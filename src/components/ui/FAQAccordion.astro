@@ -1,0 +1,74 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FAQItem[];
+  heading?: string;
+}
+
+const { faqs, heading = 'Frequently asked questions' } = Astro.props;
+---
+
+<section class="py-16 lg:py-20">
+  <div class="container-site">
+    <h2 class="section-heading text-center mb-10">{heading}</h2>
+    <div class="max-w-3xl mx-auto divide-y divide-slate-200" itemscope itemtype="https://schema.org/FAQPage">
+      {faqs.map((faq, i) => (
+        <div class="py-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button
+            class="w-full flex justify-between items-center text-left gap-4 py-2"
+            aria-expanded="false"
+            aria-controls={`faq-answer-${i}`}
+            id={`faq-question-${i}`}
+          >
+            <span class="font-semibold text-blue-900 text-base" itemprop="name">{faq.question}</span>
+            <svg class="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div
+            id={`faq-answer-${i}`}
+            role="region"
+            aria-labelledby={`faq-question-${i}`}
+            class="hidden text-slate-600 text-sm leading-relaxed pb-2"
+            itemscope
+            itemprop="acceptedAnswer"
+            itemtype="https://schema.org/Answer"
+          >
+            <p itemprop="text" set:html={faq.answer} />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[aria-controls^="faq-answer-"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      const answerId = btn.getAttribute('aria-controls')!;
+      const answer = document.getElementById(answerId);
+      const chevron = btn.querySelector('svg');
+
+      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      answer?.classList.toggle('hidden');
+      chevron?.classList.toggle('rotate-180');
+    });
+  });
+</script>
+
+<style>
+  .section-heading {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 640px) {
+    .section-heading { font-size: 2.25rem; }
+  }
+</style>

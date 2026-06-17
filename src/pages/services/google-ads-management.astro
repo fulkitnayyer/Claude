@@ -1,0 +1,211 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTASection from '../../components/ui/CTASection.astro';
+import FAQAccordion from '../../components/ui/FAQAccordion.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Google Ads Management",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Clearbid",
+      "url": "https://clearbid.in"
+    },
+    "serviceType": "Google Ads Management",
+    "areaServed": "Delhi NCR",
+    "description": "Ongoing Google Ads campaign management for small businesses in Delhi NCR. Strategy, optimisation, bid management, and reporting."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What's included in your Google Ads management service?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our management service includes monthly strategy reviews, weekly campaign optimisation (bids, keywords, negatives, ad copy), A/B testing, conversion tracking maintenance, and a plain-English monthly report."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you charge a percentage of ad spend or a flat fee?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer both flat-retainer and percentage-of-spend models. Details are on our Pricing page. Most clients below ₹1,00,000/month ad spend find the flat retainer simpler."
+        }
+      }
+    ]
+  }
+];
+
+const faqs = [
+  {
+    question: "What's included in your Google Ads management?",
+    answer: "Monthly strategy reviews, weekly campaign optimisation (bids, keywords, negatives, ad copy), A/B testing, conversion tracking maintenance, and a plain-English monthly performance report with your dedicated account manager."
+  },
+  {
+    question: "Do you charge a percentage of ad spend or a flat fee?",
+    answer: "We offer both flat-retainer and percentage-of-spend models. See our <a href='/pricing/' class='text-blue-600 underline'>Pricing page</a> for tier details. Most clients below ₹1,00,000/month find the flat retainer simpler."
+  },
+  {
+    question: "Will I have access to my own Google Ads account?",
+    answer: "Always. You own your Google Ads account, all campaigns, and all data. We work inside your account as a manager — you can see everything we do, any time."
+  },
+  {
+    question: "How often will I receive reports?",
+    answer: "You receive a detailed monthly report plus access to a live dashboard. We're available by WhatsApp or call if you want to discuss results outside of the monthly catch-up."
+  },
+];
+---
+
+<Layout
+  title="Google Ads Management for Small Businesses | Clearbid"
+  description="Ongoing Google Ads management for SMBs in Delhi NCR. Weekly optimisation, dedicated account manager, transparent reporting. Free audit to start."
+  schema={schema}
+>
+  <div class="container-site">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services/' },
+      { label: 'Google Ads Management' }
+    ]} />
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-blue-950 to-blue-800 text-white py-16 lg:py-20">
+    <div class="container-site max-w-4xl">
+      <span class="text-sm font-semibold text-orange-400 uppercase tracking-wider mb-4 block">Service</span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-6">
+        Google Ads Management
+      </h1>
+      <p class="text-lg text-blue-100 mb-8 max-w-2xl">
+        Full ongoing management of your Google Ads campaigns — so you can focus on running your business while we focus on making every rupee of ad spend work harder.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/contact/" class="btn-primary text-base px-8 py-4 inline-flex">
+          Get a Free Audit First
+        </a>
+        <a href="/pricing/" class="btn-ghost text-base px-8 py-4 inline-flex">
+          View Pricing
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem we solve -->
+  <section class="py-16 lg:py-20">
+    <div class="container-site max-w-4xl">
+      <h2 class="text-3xl font-bold text-blue-900 mb-6">The problem we solve</h2>
+      <p class="text-slate-600 text-lg mb-6">
+        Most small businesses that run Google Ads themselves do so without a systematic optimisation process. Campaigns are set up, left running, and gradually bleed budget on irrelevant clicks, overbid keywords, and ads that stopped performing months ago.
+      </p>
+      <p class="text-slate-600 text-lg">
+        Our management service puts a dedicated specialist on your account every week — finding waste, improving what's working, and systematically lowering your cost per lead while improving lead quality.
+      </p>
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section class="py-16 lg:py-20 bg-slate-50">
+    <div class="container-site max-w-4xl">
+      <h2 class="text-3xl font-bold text-blue-900 mb-8">What's included</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          'Campaign strategy and keyword research',
+          'Weekly bid and budget optimisation',
+          'Negative keyword management',
+          'Ad copy writing and A/B testing',
+          'Landing page recommendations',
+          'Audience and targeting refinement',
+          'Conversion tracking maintenance',
+          'Competitor analysis',
+          'Monthly plain-English performance report',
+          'Dedicated account manager (WhatsApp + email)',
+          'Access to live reporting dashboard',
+          'Search term analysis and query mining',
+        ].map(item => (
+          <div class="flex items-start gap-3 bg-white rounded-lg p-4 border border-slate-100">
+            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-sm text-slate-700">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-16 lg:py-20">
+    <div class="container-site max-w-4xl">
+      <h2 class="text-3xl font-bold text-blue-900 mb-8">How it works</h2>
+      <ol class="space-y-8">
+        {[
+          { n: 1, title: 'Free audit & onboarding', desc: 'We start with a free audit of your existing campaigns or market analysis if you\'re new. You get a written action plan before we charge anything.' },
+          { n: 2, title: 'Account restructure (first 30 days)', desc: 'We restructure or rebuild your campaigns with proper keyword match types, ad groups, bidding strategy, and conversion tracking.' },
+          { n: 3, title: 'Weekly optimisation', desc: 'Every week: search term mining, negative keywords added, bids adjusted, low-performers paused, new tests launched.' },
+          { n: 4, title: 'Monthly review & report', desc: 'Clear monthly report covering spend, leads, cost-per-lead, and what changed. Strategy adjustments for the next month agreed together.' },
+        ].map(step => (
+          <li class="flex gap-6">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-orange-500 text-white font-bold text-lg flex items-center justify-center">
+              {step.n}
+            </div>
+            <div>
+              <h3 class="font-bold text-blue-900 text-lg mb-2">{step.title}</h3>
+              <p class="text-slate-600 text-sm">{step.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Case study teaser -->
+  <section class="py-10 bg-slate-50">
+    <div class="container-site max-w-4xl">
+      <div class="bg-white rounded-xl border border-slate-200 p-8">
+        <p class="text-sm font-semibold text-orange-500 uppercase tracking-wider mb-2">Case study</p>
+        <p class="text-slate-500 italic">
+          [PLACEHOLDER: Add a real case study once you have one. Example: "How we reduced a Delhi real-estate developer's cost-per-lead by 45% in 60 days."]
+        </p>
+        <a href="/results/" class="mt-4 inline-flex text-sm font-semibold text-blue-700 hover:text-orange-500 transition-colors">
+          See all case studies →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internal links -->
+  <section class="py-10">
+    <div class="container-site max-w-4xl">
+      <p class="text-sm text-slate-500 mb-3">Related pages:</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/pricing/" class="text-sm text-blue-700 underline hover:text-orange-500">Pricing & packages</a>
+        <span class="text-slate-300">·</span>
+        <a href="/services/google-ads-audit/" class="text-sm text-blue-700 underline hover:text-orange-500">Google Ads audit</a>
+        <span class="text-slate-300">·</span>
+        <a href="/industries/real-estate/" class="text-sm text-blue-700 underline hover:text-orange-500">Google Ads for real estate</a>
+        <span class="text-slate-300">·</span>
+        <a href="/locations/google-ads-agency-gurgaon/" class="text-sm text-blue-700 underline hover:text-orange-500">Google Ads agency in Gurgaon</a>
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion {faqs} />
+
+  <CTASection
+    heading="Ready for Google Ads that actually work?"
+    subtext="Start with a free audit — no obligation. We'll review your account and give you a clear action plan."
+  />
+</Layout>
+
+<style>
+  .btn-primary { display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:0.5rem;background-color:#f97316;color:white;font-weight:600;transition:background-color 0.2s; }
+  .btn-primary:hover { background-color:#ea580c; }
+  .btn-ghost { display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.3);color:white;font-weight:600;transition:background-color 0.2s; }
+  .btn-ghost:hover { background-color:rgba(255,255,255,0.1); }
+</style>

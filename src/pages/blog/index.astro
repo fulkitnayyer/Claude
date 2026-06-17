@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTASection from '../../components/ui/CTASection.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+---
+
+<Layout
+  title="Google Ads Blog | Clearbid"
+  description="Google Ads tips, guides, and case studies for small businesses in India. How to get more from your ad spend in Delhi NCR."
+>
+  <div class="container-site">
+    <Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'Blog' }]} />
+  </div>
+
+  <section class="bg-gradient-to-br from-blue-950 to-blue-800 text-white py-16 text-center">
+    <div class="container-site max-w-3xl">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Google Ads Blog</h1>
+      <p class="text-blue-100 text-lg">Practical guides and insights for small businesses running Google Ads in India.</p>
+    </div>
+  </section>
+
+  <section class="py-20 text-center">
+    <div class="container-site max-w-xl">
+      <p class="text-slate-600 mb-8">
+        Blog posts are coming soon. Topics planned include: how much Google Ads costs for small businesses in India, Google Ads vs Facebook Ads, conversion tracking setup guide, and case studies from Delhi NCR clients.
+      </p>
+      <p class="text-sm text-slate-400">
+        [PLACEHOLDER: Blog posts will be published via the content collections system. Add .mdx files to src/content/blog/]
+      </p>
+    </div>
+  </section>
+
+  <CTASection />
+</Layout>

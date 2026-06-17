@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTASection from '../../components/ui/CTASection.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+---
+
+<Layout
+  title="Google Ads for Education & Coaching in Delhi NCR | Clearbid"
+  description="Google Ads for coaching institutes, schools, and ed-tech in Delhi NCR. Generate admissions enquiries from local search. Free audit."
+>
+  <div class="container-site">
+    <Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'Industries', href: '/industries/' }, { label: 'Education' }]} />
+  </div>
+
+  <section class="bg-gradient-to-br from-blue-950 to-blue-800 text-white py-16 lg:py-20">
+    <div class="container-site max-w-3xl">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-6">Google Ads for Education</h1>
+      <p class="text-lg text-blue-100 mb-8">
+        Parents and students in Delhi NCR search for coaching institutes, schools, and courses every day. We build Google Ads campaigns that capture high-intent admissions enquiries from local search.
+      </p>
+      <a href="/contact/" class="btn-primary inline-flex text-base px-8 py-4">Get a Free Education Audit</a>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20">
+    <div class="container-site max-w-4xl">
+      <h2 class="text-3xl font-bold text-blue-900 mb-6">We work with</h2>
+      <div class="flex flex-wrap gap-3 mb-10">
+        {['IIT/JEE/NEET coaching', 'MBA prep institutes', 'School admission campaigns', 'Ed-tech platforms', 'Skill training', 'Language institutes', 'Preschools & daycares'].map(t => (
+          <span class="bg-blue-50 text-blue-800 text-sm font-medium px-4 py-2 rounded-full border border-blue-100">{t}</span>
+        ))}
+      </div>
+
+      <p class="text-slate-600 mb-6 text-lg">
+        Education campaigns in NCR are highly seasonal (admission season peaks in Dec–Feb and June–Aug) and highly competitive. We structure campaigns with the seasonal peaks in mind and maintain base campaigns year-round to capture evergreen demand.
+      </p>
+
+      <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+        <p class="text-sm font-semibold text-orange-500 uppercase tracking-wider mb-2">Case study</p>
+        <p class="text-slate-500 italic text-sm">[PLACEHOLDER: Add a real education case study here.]</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection heading="Fill more seats with Google Ads" primaryLabel="Get My Free Education Audit" />
+</Layout>
+
+<style>
+  .btn-primary { display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:0.5rem;background-color:#f97316;color:white;font-weight:600;transition:background-color 0.2s; }
+  .btn-primary:hover { background-color:#ea580c; }
+</style>

@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTASection from '../components/ui/CTASection.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+---
+
+<Layout
+  title="About Clearbid | Google Ads Experts in Delhi NCR"
+  description="About Clearbid — who we are, our approach to Google Ads, and why we founded a transparent, no-nonsense Google Ads agency for SMBs in Delhi NCR."
+>
+  <div class="container-site">
+    <Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
+  </div>
+
+  <section class="bg-gradient-to-br from-blue-950 to-blue-800 text-white py-16 lg:py-20">
+    <div class="container-site max-w-3xl">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-6">About Clearbid</h1>
+      <p class="text-lg text-blue-100">
+        We started Clearbid because we saw too many small businesses in Delhi NCR get burned by opaque agencies, inflated fees, and campaigns that were set-and-forgotten. We wanted to do it differently.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-3xl font-bold text-blue-900 mb-6">Our story</h2>
+          <p class="text-slate-600 mb-4">
+            [PLACEHOLDER: Write your founder story here. Example: "After X years managing Google Ads for companies large and small, I kept noticing the same problem: small businesses were paying agency fees but getting junior account managers, templated campaigns, and monthly reports they couldn't understand. I founded Clearbid to offer SMBs the same rigour and transparency that enterprise clients expect — without the enterprise price tag."]
+          </p>
+          <p class="text-slate-600">
+            [PLACEHOLDER: 1–2 more sentences about your specific background, the Delhi NCR connection, and what 'Clearbid' means to you.]
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-3xl font-bold text-blue-900 mb-6">Our approach</h2>
+          <ul class="space-y-4">
+            {[
+              { title: 'Transparency first', desc: 'You always own your account. We share everything — the good, the bad, and what we\'re doing about it.' },
+              { title: 'Data over guesswork', desc: 'Every decision is backed by data. We don\'t move budgets or change bids without a reason we can explain.' },
+              { title: 'Accountable to results', desc: 'Month-to-month contracts because we believe in earning your trust every month, not locking you in.' },
+              { title: 'SMB focus', desc: 'Small and mid-sized businesses are our primary clients. We\'re not a large agency with your account buried in a pod.' },
+            ].map(item => (
+              <li class="flex gap-4">
+                <div class="w-2 h-2 rounded-full bg-orange-500 mt-2 flex-shrink-0"></div>
+                <div>
+                  <p class="font-bold text-blue-900">{item.title}</p>
+                  <p class="text-sm text-slate-600">{item.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Team section -->
+      <div class="mt-16">
+        <h2 class="text-3xl font-bold text-blue-900 mb-8">Team</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-slate-50 rounded-xl p-6 text-center">
+            <div class="w-20 h-20 bg-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl" aria-hidden="true">
+              👤
+            </div>
+            <p class="font-bold text-blue-900">[PLACEHOLDER: Founder Name]</p>
+            <p class="text-sm text-slate-500">[PLACEHOLDER: Title — e.g. "Founder & Head of Google Ads"]</p>
+            <p class="text-xs text-slate-400 mt-2">[PLACEHOLDER: X years experience, key background]</p>
+          </div>
+          <!-- Add more team cards as your team grows -->
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-blue-900 mb-6">Certifications</h2>
+        <div class="flex flex-wrap gap-4">
+          <div class="bg-white border border-slate-200 rounded-lg px-6 py-4 text-sm font-semibold text-slate-700">
+            Google Ads Search Certified
+          </div>
+          <div class="bg-white border border-slate-200 rounded-lg px-6 py-4 text-sm font-semibold text-slate-700">
+            [PLACEHOLDER: Additional certifications]
+          </div>
+          <!-- [PLACEHOLDER: Add Google Partner badge here once genuinely earned — use official Google asset only] -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</Layout>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0f2d4a"/>
+  <rect x="0" y="0" width="6" height="630" fill="#f97316"/>
+
+  <!-- Logo mark -->
+  <circle cx="100" cy="315" r="55" stroke="#1a4f7a" stroke-width="14" fill="none"/>
+  <circle cx="100" cy="315" r="20" fill="#f97316"/>
+  <path d="M100 260 A55 55 0 1 0 100 370 A55 55 0 0 1 100 370" stroke="white" stroke-width="14" stroke-linecap="round" fill="none"/>
+
+  <!-- Wordmark -->
+  <text x="175" y="340" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="72" fill="white" letter-spacing="-2">
+    clear<tspan fill="#f97316">bid</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="175" y="390" font-family="Inter, Arial, sans-serif" font-weight="400" font-size="26" fill="#7fb3d3" letter-spacing="0">
+    Google Ads Agency for SMBs · Delhi NCR
+  </text>
+
+  <!-- CTA bar -->
+  <rect x="0" y="540" width="1200" height="90" fill="#1a4f7a" opacity="0.6"/>
+  <text x="600" y="595" font-family="Inter, Arial, sans-serif" font-weight="600" font-size="24" fill="white" text-anchor="middle">
+    Free audit · No lock-in contracts · Cancel anytime
+  </text>
+</svg>

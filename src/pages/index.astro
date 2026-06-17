@@ -1,0 +1,572 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LeadForm from '../components/LeadForm.astro';
+import CTASection from '../components/ui/CTASection.astro';
+import FAQAccordion from '../components/ui/FAQAccordion.astro';
+import { SITE } from '../config/site';
+
+const homeSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does Google Ads management cost in India?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our management fees depend on your ad spend and campaign complexity. We offer three tiers starting from a flat monthly retainer. See our Pricing page for details. There are no lock-in contracts — cancel anytime."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long before I see results from Google Ads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most campaigns start generating leads within the first 2–4 weeks. Optimisation compounds over 90 days as we gather data. We set clear milestones so you always know what to expect."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work with small businesses in Delhi NCR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — SMBs are our primary focus. We serve businesses across Delhi, Gurgaon, Noida, Ghaziabad, and Faridabad with Google Ads budgets from ₹25,000/month upwards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's included in the free Google Ads audit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We review your existing campaigns (or your competitors' if you haven't run ads before), identify wasted spend, keyword gaps, landing-page issues, and conversion tracking problems. You get a clear action plan — no obligation to hire us."
+        }
+      },
+    ]
+  }
+];
+
+const faqs = [
+  {
+    question: "How much does Google Ads management cost in India?",
+    answer: "Our management fees depend on your ad spend and campaign complexity. We offer three tiers starting from a flat monthly retainer — see our <a href='/pricing/' class='text-blue-600 underline'>Pricing page</a> for details. There are no lock-in contracts; cancel anytime."
+  },
+  {
+    question: "How long before I see results from Google Ads?",
+    answer: "Most campaigns start generating leads within the first 2–4 weeks. Optimisation compounds over 90 days as we gather data and refine targeting. We set clear milestones so you always know what to expect."
+  },
+  {
+    question: "Do you work with small businesses?",
+    answer: "Yes — SMBs are our primary focus. We serve businesses across Delhi, Gurgaon, Noida, Ghaziabad, and Faridabad with Google Ads budgets from ₹25,000/month upwards."
+  },
+  {
+    question: "What's included in the free Google Ads audit?",
+    answer: "We review your existing campaigns (or benchmark against competitors if you're starting fresh), identify wasted spend, keyword gaps, landing-page issues, and conversion tracking gaps. You receive a clear action plan — no obligation."
+  },
+  {
+    question: "Do I need to sign a long-term contract?",
+    answer: "No. All our plans are month-to-month. We earn your continued trust through results, not lock-in clauses. That said, Google Ads does require at least 90 days of data to optimise properly, and we'll be upfront about that."
+  },
+  {
+    question: "Is Google Ads worth it for small businesses in India?",
+    answer: "For most local SMBs targeting high-intent buyers — real estate, healthcare, education, services — Google Ads is one of the most direct paths to qualified leads. The key is proper setup, targeting, and ongoing optimisation. A poorly managed campaign burns money; a well-managed one pays for itself many times over."
+  },
+];
+---
+
+<Layout
+  title={`Google Ads Agency for Small Businesses in Delhi NCR | ${SITE.name}`}
+  description="We build, manage, and optimise Google Ads campaigns for SMBs across Delhi NCR. More qualified leads, less wasted ad spend. Free audit, no lock-in contracts."
+  schema={homeSchema}
+>
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white py-16 lg:py-24">
+    <div class="container-site">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <!-- Eyebrow — only factual claims -->
+          <p class="inline-block text-sm font-semibold text-orange-400 uppercase tracking-wider mb-4">
+            {/* [PLACEHOLDER — use only what is TRUE on launch day:
+                "Google Ads Certified · Serving Delhi NCR"
+                OR "Free audit · No lock-in contracts"
+                Do NOT add "Google Partner" before genuinely earning it.] */}
+            Google Ads Certified · Serving Delhi NCR
+          </p>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+            More customers from Google.<br />
+            <span class="text-orange-400">Less wasted ad spend.</span>
+          </h1>
+
+          <p class="text-lg text-blue-100 mb-8 max-w-lg">
+            We build, manage, and optimise Google Ads campaigns for small and mid-sized businesses across Delhi NCR — so you get more qualified leads and a clear view of every rupee you spend.
+          </p>
+
+          {/*
+            A/B headline alternatives — for owner to test (not rendered):
+            "Turn Google searches into paying customers."
+            "Tired of burning money on Google Ads? Let's fix that."
+            "Stop guessing. Start growing. Google Ads that actually pay off."
+          */}
+
+          <div class="flex flex-col sm:flex-row gap-4 mb-6">
+            <a href="/contact/" class="btn-primary text-base px-8 py-4">
+              Get My Free Google Ads Audit
+            </a>
+            <a
+              href={`tel:${SITE.phoneRaw}`}
+              class="btn-ghost text-base px-8 py-4"
+              onclick="window.dataLayer?.push({event:'call_click',location:'hero'})"
+            >
+              📞 Call Now: {SITE.phone}
+            </a>
+          </div>
+
+          <p class="text-sm text-blue-300">
+            Free audit · No lock-in contracts · Cancel anytime
+          </p>
+        </div>
+
+        <!-- Hero lead form -->
+        <div class="lg:max-w-md">
+          <LeadForm variant="hero" heading="Get your free Google Ads audit" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TRUST BAR
+       ============================================================ -->
+  <section class="border-b border-slate-100 py-8 bg-slate-50" aria-label="Trust signals">
+    <div class="container-site">
+      <div class="flex flex-wrap items-center justify-center gap-8 text-slate-400 text-sm">
+        <!-- [PLACEHOLDER: Google Partner badge — add once earned] -->
+        <div class="flex items-center gap-2 text-slate-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
+          </svg>
+          <span>Google Ads Certified</span>
+        </div>
+        <div class="flex items-center gap-2 text-slate-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
+          </svg>
+          <span>Delhi NCR Specialists</span>
+        </div>
+        <div class="flex items-center gap-2 text-slate-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
+          </svg>
+          <span>No Lock-in Contracts</span>
+        </div>
+        <div class="flex items-center gap-2 text-slate-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
+          </svg>
+          <span>Full Transparency</span>
+        </div>
+        <!-- [PLACEHOLDER: client logos — add with permission once you have them] -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROBLEM SECTION
+       ============================================================ -->
+  <section class="py-16 lg:py-20">
+    <div class="container-site">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-blue-900 mb-6">
+          Running Google Ads without a strategy is expensive
+        </h2>
+        <p class="text-lg text-slate-600 mb-10">
+          Most small businesses in Delhi NCR either don't run Google Ads at all, or waste thousands every month on campaigns that bring clicks but no customers. The gap between a poor campaign and a profitable one is almost always execution and expertise — not budget.
+        </p>
+        <div class="grid sm:grid-cols-3 gap-6 text-left">
+          {[
+            {
+              icon: '💸',
+              problem: 'Burning budget on irrelevant searches',
+              fix: 'Precise negative keywords and match-type strategy'
+            },
+            {
+              icon: '📉',
+              problem: 'Clicks that never convert',
+              fix: 'Landing pages, tracking, and bidding tuned to conversions'
+            },
+            {
+              icon: '🔍',
+              problem: 'No idea what\'s actually working',
+              fix: 'Full conversion tracking and monthly plain-English reports'
+            }
+          ].map(item => (
+            <div class="bg-slate-50 rounded-xl p-6">
+              <div class="text-3xl mb-3" aria-hidden="true">{item.icon}</div>
+              <p class="text-sm font-semibold text-red-600 mb-2">{item.problem}</p>
+              <p class="text-sm text-slate-600">✓ {item.fix}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES OVERVIEW
+       ============================================================ -->
+  <section class="py-16 lg:py-20 bg-slate-50">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-blue-900 mb-4">What we do</h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Full-service Google Ads management — from first campaign to scaling profitably.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          {
+            title: 'Google Ads Management',
+            desc: 'Ongoing campaign management with weekly optimisation, monthly reports, and a dedicated account manager.',
+            href: '/services/google-ads-management/',
+            icon: '⚙️',
+          },
+          {
+            title: 'Google Ads Audit',
+            desc: 'A deep-dive review of your existing campaigns. Find wasted spend, quick wins, and a clear roadmap.',
+            href: '/services/google-ads-audit/',
+            icon: '🔎',
+          },
+          {
+            title: 'Campaign Setup',
+            desc: 'Launch new Search, Display, or Performance Max campaigns built right from day one.',
+            href: '/services/campaign-setup/',
+            icon: '🚀',
+          },
+          {
+            title: 'Conversion Tracking',
+            desc: 'Server-side tracking, enhanced conversions, and GA4 — know exactly which ads are driving revenue.',
+            href: '/services/conversion-tracking/',
+            icon: '📊',
+          },
+        ].map(service => (
+          <a
+            href={service.href}
+            class="bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 group flex flex-col"
+          >
+            <div class="text-3xl mb-4" aria-hidden="true">{service.icon}</div>
+            <h3 class="font-bold text-blue-900 mb-2 group-hover:text-orange-500 transition-colors">
+              {service.title}
+            </h3>
+            <p class="text-sm text-slate-600 flex-1">{service.desc}</p>
+            <span class="mt-4 text-sm font-semibold text-orange-500 group-hover:translate-x-1 inline-block transition-transform">
+              Learn more →
+            </span>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/services/" class="btn-secondary inline-flex">
+          All Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RESULTS / STATS BAND
+       ============================================================ -->
+  <section class="py-16 lg:py-20 bg-blue-900 text-white">
+    <div class="container-site">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Built on real results</h2>
+        <p class="text-blue-200 text-lg">
+          [PLACEHOLDER — replace these with your real numbers before launch]
+        </p>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        {[
+          { stat: '[PLACEHOLDER: ₹X Cr+]', label: 'Ad spend managed' },
+          { stat: '[PLACEHOLDER: X:1]', label: 'Average ROAS' },
+          { stat: '[PLACEHOLDER: X,000+]', label: 'Leads generated' },
+          { stat: '[PLACEHOLDER: X%]', label: 'Avg. cost reduction' },
+        ].map(item => (
+          <div>
+            <p class="text-4xl sm:text-5xl font-extrabold text-orange-400 mb-2">{item.stat}</p>
+            <p class="text-blue-200 text-sm font-medium">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+  <section class="py-16 lg:py-20">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-blue-900 mb-4">How it works</h2>
+        <p class="text-slate-600 text-lg max-w-xl mx-auto">
+          Three clear steps from audit to profitable growth.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        {[
+          {
+            step: '01',
+            title: 'Audit',
+            desc: 'We review your account (or your market if you\'re new to ads), identify wasted spend and quick wins, and deliver a clear action plan.'
+          },
+          {
+            step: '02',
+            title: 'Build',
+            desc: 'We restructure or launch campaigns with the right keywords, bidding strategy, ad copy, and conversion tracking from day one.'
+          },
+          {
+            step: '03',
+            title: 'Optimise',
+            desc: 'Weekly refinements based on real data — negative keywords, bid adjustments, A/B testing — with plain-English monthly reports.'
+          }
+        ].map(item => (
+          <div class="relative text-center">
+            <div class="w-16 h-16 rounded-full bg-orange-50 border-2 border-orange-200 flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-extrabold text-orange-500">{item.step}</span>
+            </div>
+            <h3 class="text-xl font-bold text-blue-900 mb-3">{item.title}</h3>
+            <p class="text-slate-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURED CASE STUDY — [PLACEHOLDER]
+       ============================================================ -->
+  <section class="py-16 lg:py-20 bg-slate-50">
+    <div class="container-site">
+      <h2 class="text-3xl sm:text-4xl font-bold text-blue-900 mb-10 text-center">Featured result</h2>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden max-w-3xl mx-auto">
+        <div class="bg-blue-900 px-8 py-6 text-white">
+          <p class="text-sm text-blue-300 font-semibold uppercase tracking-wider mb-1">
+            [PLACEHOLDER: Industry] · Delhi NCR
+          </p>
+          <h3 class="text-2xl font-bold">
+            [PLACEHOLDER: "3x more leads at 40% lower cost-per-lead in 90 days"]
+          </h3>
+        </div>
+        <div class="px-8 py-6">
+          <p class="text-slate-600 mb-6">
+            [PLACEHOLDER: Brief description of the client situation and what we did. Replace with a real case study once you have one. Example: "A Gurgaon real-estate developer was spending ₹80,000/month on Google Ads with minimal returns. We restructured their campaigns, added negative keywords, and rebuilt their landing pages. Within 90 days..."]
+          </p>
+          <div class="grid grid-cols-3 gap-4 mb-6">
+            {['[PLACEHOLDER: ROAS]', '[PLACEHOLDER: Cost/lead]', '[PLACEHOLDER: Leads/mo]'].map(stat => (
+              <div class="text-center">
+                <p class="text-2xl font-extrabold text-orange-500">{stat}</p>
+                <p class="text-xs text-slate-500 mt-1">[Metric]</p>
+              </div>
+            ))}
+          </div>
+          <a href="/results/" class="btn-secondary inline-flex">
+            See all case studies →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOCIAL PROOF — founder credibility (shown while testimonials empty)
+       Per §15.2: this block shows INSTEAD of empty testimonials section
+       ============================================================ -->
+  <section class="py-16 lg:py-20">
+    <div class="container-site">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-blue-900 mb-10 text-center">Why trust us with your ad spend?</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Founder credibility -->
+          <div class="bg-slate-50 rounded-xl p-8">
+            <h3 class="text-xl font-bold text-blue-900 mb-4">Founder background</h3>
+            <ul class="space-y-3 text-slate-600 text-sm">
+              <li class="flex gap-3">
+                <span class="text-orange-500 font-bold flex-shrink-0">✓</span>
+                <span>[PLACEHOLDER: X] years managing Google Ads campaigns across Search, Display, Shopping, and Performance Max.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-orange-500 font-bold flex-shrink-0">✓</span>
+                <span>Managed [PLACEHOLDER: ₹X Cr+] in total ad spend across [PLACEHOLDER: X+] accounts and [PLACEHOLDER: X+] industries.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-orange-500 font-bold flex-shrink-0">✓</span>
+                <span>Prior work with clients in real estate, healthcare, education, and e-commerce in Delhi NCR.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-orange-500 font-bold flex-shrink-0">✓</span>
+                <span>Google Ads certified. [PLACEHOLDER: Additional certifications.]</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Risk reversal -->
+          <div class="bg-orange-50 rounded-xl p-8 border border-orange-100">
+            <h3 class="text-xl font-bold text-blue-900 mb-4">Zero-risk to get started</h3>
+            <ul class="space-y-3 text-slate-600 text-sm">
+              <li class="flex gap-3">
+                <span class="text-orange-500 font-bold flex-shrink-0">✓</span>
+                <span><strong>Free audit</strong> — we review your account or market and give you a real action plan, no strings attached.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-orange-500 font-bold flex-shrink-0">✓</span>
+                <span><strong>No lock-in contracts</strong> — month-to-month. Stay because results are good, not because of a clause.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-orange-500 font-bold flex-shrink-0">✓</span>
+                <span><strong>Full transparency</strong> — you own your ad account and all assets. We never lock you out.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-orange-500 font-bold flex-shrink-0">✓</span>
+                <span><strong>Founding-client offer</strong> — we're launching with a special rate for our first [PLACEHOLDER: N] clients in exchange for a case study after results.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Transparency artifacts -->
+        <div class="mt-8 bg-blue-50 rounded-xl p-8 border border-blue-100">
+          <h3 class="text-lg font-bold text-blue-900 mb-3">See our work before you commit</h3>
+          <div class="flex flex-wrap gap-4">
+            <a href="/contact/" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-orange-500 transition-colors">
+              📋 Request a sample audit report
+            </a>
+            <span class="text-slate-300">|</span>
+            <a href="/contact/" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-orange-500 transition-colors">
+              📊 See a sample dashboard
+            </a>
+            <span class="text-slate-300">|</span>
+            <a href="/pricing/" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-orange-500 transition-colors">
+              💰 View transparent pricing
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY US / DIFFERENTIATORS
+       ============================================================ -->
+  <section class="py-16 lg:py-20 bg-blue-950 text-white">
+    <div class="container-site">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-10 text-center">The Clearbid difference</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          {
+            icon: '🔍',
+            title: 'Full transparency',
+            desc: 'Your account, your assets, your data — always. Monthly reports in plain English, not agency jargon.'
+          },
+          {
+            icon: '📅',
+            title: 'No long lock-ins',
+            desc: 'Month-to-month contracts. We believe in keeping clients through performance, not penalty clauses.'
+          },
+          {
+            icon: '👤',
+            title: 'Dedicated manager',
+            desc: 'One point of contact who knows your business, your goals, and your campaigns inside out.'
+          },
+          {
+            icon: '📡',
+            title: 'Advanced tracking',
+            desc: 'Server-side tagging, enhanced conversions, and GA4 — so you always know which ads drive revenue.'
+          },
+        ].map(item => (
+          <div class="text-center">
+            <div class="text-4xl mb-4" aria-hidden="true">{item.icon}</div>
+            <h3 class="font-bold text-white mb-2">{item.title}</h3>
+            <p class="text-blue-200 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LEAD MAGNET
+       ============================================================ -->
+  <section class="py-16 lg:py-20">
+    <div class="container-site">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-blue-900 mb-4">
+          Not ready to talk? Start with a free audit.
+        </h2>
+        <p class="text-slate-600 text-lg mb-8">
+          Fill in the form and we'll review your Google Ads account (or your competitive landscape if you're new) — no pitch, no obligation. Just honest findings and an action plan.
+        </p>
+        <a href="/services/google-ads-audit/" class="btn-primary text-base px-8 py-4 mr-4 mb-4 inline-flex">
+          Learn about our audit →
+        </a>
+        <a href="/contact/" class="btn-secondary text-base px-8 py-4 mb-4 inline-flex">
+          Request your free audit
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQAccordion {faqs} heading="Questions about Google Ads management" />
+
+  <!-- Final CTA -->
+  <CTASection />
+</Layout>
+
+<style>
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #f97316;
+    color: white;
+    font-weight: 600;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    font-size: 0.875rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .btn-primary:hover { background-color: #ea580c; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid #1e3a5f;
+    color: #1e3a5f;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+  }
+  .btn-secondary:hover { background-color: #1e3a5f; color: white; }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    font-size: 0.875rem;
+  }
+  .btn-ghost:hover { background-color: rgba(255,255,255,0.1); }
+</style>

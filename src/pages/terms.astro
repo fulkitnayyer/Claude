@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import { SITE } from '../config/site';
+
+const updated = '17 June 2026';
+---
+
+<Layout
+  title="Terms of Use | Clearbid"
+  description="Terms of use for the Clearbid website and Google Ads management services."
+>
+  <div class="container-site">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Terms of Use' }
+    ]} />
+  </div>
+
+  <article class="py-12 lg:py-16">
+    <div class="container-site max-w-3xl">
+      <h1 class="text-3xl font-extrabold text-blue-900 mb-2">Terms of Use</h1>
+      <p class="text-slate-500 text-sm mb-10">Last updated: {updated}</p>
+
+      <div class="space-y-8 text-slate-700 text-sm leading-relaxed">
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">1. Acceptance of terms</h2>
+          <p>By accessing or using the {SITE.name} website ({SITE.url}), you agree to be bound by these Terms of Use. If you do not agree, please do not use this site.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">2. Services</h2>
+          <p>{SITE.name} provides Google Ads consulting and management services. The scope, deliverables, fees, and terms of any engagement are defined in a separate service agreement or proposal agreed between {SITE.name} and the client. These website terms do not constitute a service agreement.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">3. Intellectual property</h2>
+          <p>All content on this website — including text, images, logos, and code — is the property of {SITE.name} or its licensors and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without written permission.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">4. No guarantee of results</h2>
+          <p>Google Ads performance depends on many factors outside our control, including your product, pricing, competition, ad spend, landing pages, and market conditions. Nothing on this website constitutes a guarantee of specific results. [PLACEHOLDER: any result figures or case studies on this site reflect prior work and specific circumstances — outcomes vary.]</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">5. Disclaimer of warranties</h2>
+          <p>This website is provided "as is" without warranties of any kind, express or implied, including but not limited to merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that the website will be error-free or continuously available.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">6. Limitation of liability</h2>
+          <p>To the maximum extent permitted by applicable law, {SITE.name} shall not be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of this website or our services. Our total liability in any circumstance shall not exceed the amount paid to us in the preceding one month.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">7. Third-party links</h2>
+          <p>This site contains links to third-party websites (Google, WhatsApp, etc.). We have no control over and accept no responsibility for the content, privacy policies, or practices of those sites.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">8. Governing law</h2>
+          <p>These terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts in Delhi, India.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">9. Changes</h2>
+          <p>We may update these terms at any time. Continued use of the site after changes constitutes your acceptance of the revised terms.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">10. Contact</h2>
+          <p>
+            Questions about these terms: <a href={`mailto:${SITE.email}`} class="text-blue-700 underline">{SITE.email}</a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../config/site';
+
+const waText = encodeURIComponent("Hi Clearbid! I just submitted a form and wanted to follow up.");
+---
+
+<Layout
+  title="Thank You | Clearbid"
+  description="We've received your enquiry and will be in touch within 1 business day."
+  noindex={true}
+>
+  <section class="min-h-[80vh] flex items-center py-20">
+    <div class="container-site text-center max-w-2xl">
+      <!-- Success icon -->
+      <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+
+      <h1 class="text-4xl font-extrabold text-blue-900 mb-4">
+        Got it — thank you!
+      </h1>
+      <p class="text-lg text-slate-600 mb-8">
+        We've received your enquiry and will review your account details. You'll hear back from us within <strong>1 business day</strong>.
+      </p>
+
+      <div class="bg-slate-50 rounded-xl p-6 mb-8 text-left">
+        <h2 class="font-bold text-blue-900 mb-3">What happens next</h2>
+        <ol class="space-y-3 text-sm text-slate-600">
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span>We review the information you shared (usually within a few hours).</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span>We reach out by phone or WhatsApp to schedule your free audit call.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span>You receive a written audit report with findings and a clear action plan — no pitch required.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`https://wa.me/${SITE.whatsapp}?text=${waText}`} target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+          onclick="window.dataLayer?.push({event:'whatsapp_click',location:'thank_you'})"
+        >
+          Follow up on WhatsApp
+        </a>
+        <a href="/" class="inline-flex items-center gap-2 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white font-semibold px-6 py-3 rounded-lg transition-all">
+          Back to homepage
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<!-- Conversion tracking fires on this page -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'generate_lead',
+    form_location: 'thank_you_page',
+  });
+
+  // [PLACEHOLDER: Google Ads conversion snippet]
+  // Replace with actual conversion tag from your Google Ads account once set up.
+  // gtag('event', 'conversion', { 'send_to': 'AW-XXXXXXXXX/conversion_label' });
+</script>

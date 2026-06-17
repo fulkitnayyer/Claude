@@ -1,0 +1,169 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTASection from '../../components/ui/CTASection.astro';
+import FAQAccordion from '../../components/ui/FAQAccordion.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import LeadForm from '../../components/LeadForm.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Google Ads Audit",
+  "provider": { "@type": "LocalBusiness", "name": "Clearbid", "url": "https://clearbid.in" },
+  "serviceType": "Google Ads Audit",
+  "areaServed": "Delhi NCR",
+  "description": "In-depth Google Ads account audit for businesses in Delhi NCR. Find wasted spend, keyword gaps, and a clear action plan."
+};
+
+const auditPoints = [
+  'Campaign structure and keyword match types',
+  'Negative keyword list — finding searches you\'re paying for but shouldn\'t be',
+  'Quality Score and Ad Rank analysis',
+  'Bidding strategy and target CPA/ROAS alignment',
+  'Ad copy relevance and extension usage',
+  'Landing page experience and conversion rate',
+  'Conversion tracking accuracy (missing events, duplicate tracking)',
+  'Audience targeting and demographic exclusions',
+  'Competitor share of voice and auction insights',
+  'Budget allocation across campaigns',
+  'Search term report analysis',
+  'GA4 and Google Ads data linkage',
+];
+
+const faqs = [
+  {
+    question: "Is the Google Ads audit really free?",
+    answer: "Yes. We review your existing campaigns (or your market if you're not yet advertising) and deliver a written report with findings and a prioritised action plan. No charge, no obligation."
+  },
+  {
+    question: "How long does the audit take?",
+    answer: "We aim to deliver your audit report within 3–5 business days of receiving access to your account (or the information we need to analyse your market)."
+  },
+  {
+    question: "What do I need to share for the audit?",
+    answer: "Read-only access to your Google Ads account (we can guide you through this in 2 minutes). If you don't have an account yet, just share your website URL and target audience details."
+  },
+  {
+    question: "What happens after the audit?",
+    answer: "You receive the report and we walk through findings on a 30-minute call. After that, you can hire us to implement the changes, implement them yourself, or take the report to another agency. The audit has value regardless."
+  },
+];
+---
+
+<Layout
+  title="Google Ads Audit for Small Businesses | Clearbid"
+  description="Free in-depth Google Ads audit for businesses in Delhi NCR. Find wasted spend, keyword gaps, and a clear action plan. No obligation, delivered in 3–5 days."
+  schema={schema}
+>
+  <div class="container-site">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services/' },
+      { label: 'Google Ads Audit' }
+    ]} />
+  </div>
+
+  <!-- Hero with inline form -->
+  <section class="bg-gradient-to-br from-blue-950 to-blue-800 text-white py-16 lg:py-20">
+    <div class="container-site">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <span class="text-sm font-semibold text-orange-400 uppercase tracking-wider mb-4 block">Free service</span>
+          <h1 class="text-4xl sm:text-5xl font-extrabold mb-6">
+            Google Ads Audit
+          </h1>
+          <p class="text-lg text-blue-100 mb-6">
+            A deep, methodical review of your Google Ads account — or your competitive landscape if you're new. Find out exactly where your budget is going and how to fix it.
+          </p>
+          <ul class="space-y-3 mb-8">
+            {[
+              'Delivered within 3–5 business days',
+              'Written report with prioritised action plan',
+              'Plain English — no jargon',
+              'Free, with no obligation to hire us',
+            ].map(item => (
+              <li class="flex items-center gap-3 text-blue-100">
+                <svg class="w-5 h-5 text-green-400 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Lead magnet form -->
+        <div>
+          <LeadForm variant="hero" heading="Request your free audit" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we audit -->
+  <section class="py-16 lg:py-20">
+    <div class="container-site max-w-4xl">
+      <h2 class="text-3xl font-bold text-blue-900 mb-4">What we review in the audit</h2>
+      <p class="text-slate-600 mb-8">
+        A proper Google Ads audit covers more than just the campaigns — it looks at the full stack from keywords to conversion tracking to make sure every part is working together.
+      </p>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {auditPoints.map(point => (
+          <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+            <svg class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-sm text-slate-700">{point}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-16 lg:py-20 bg-slate-50">
+    <div class="container-site max-w-4xl">
+      <h2 class="text-3xl font-bold text-blue-900 mb-8">How the audit works</h2>
+      <ol class="space-y-6">
+        {[
+          { n: 1, title: 'Fill in the form', desc: 'Tell us about your business and share your Google Ads account URL. We\'ll request read-only access.' },
+          { n: 2, title: 'We audit your account', desc: 'Within 3–5 business days, our specialist reviews your account against a 50-point checklist.' },
+          { n: 3, title: 'You receive a written report', desc: 'A clear document: findings, what\'s working, what\'s wasting money, and a prioritised action plan.' },
+          { n: 4, title: '30-minute call to walk through it', desc: 'We\'ll answer your questions and explain what we found. No pitch — just the findings.' },
+        ].map(step => (
+          <li class="flex gap-6 items-start">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center">
+              {step.n}
+            </div>
+            <div>
+              <h3 class="font-bold text-blue-900 mb-1">{step.title}</h3>
+              <p class="text-sm text-slate-600">{step.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Internal links -->
+  <section class="py-8">
+    <div class="container-site max-w-4xl">
+      <p class="text-sm text-slate-500 mb-3">Related pages:</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/services/google-ads-management/" class="text-sm text-blue-700 underline hover:text-orange-500">Google Ads Management</a>
+        <span class="text-slate-300">·</span>
+        <a href="/pricing/" class="text-sm text-blue-700 underline hover:text-orange-500">Pricing</a>
+        <span class="text-slate-300">·</span>
+        <a href="/locations/google-ads-agency-gurgaon/" class="text-sm text-blue-700 underline hover:text-orange-500">Gurgaon</a>
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion {faqs} />
+
+  <CTASection
+    heading="Get your free Google Ads audit"
+    subtext="Fill in the form above or click below. We'll review your campaigns and show you exactly where your budget is going."
+    primaryLabel="Request Free Audit"
+  />
+</Layout>

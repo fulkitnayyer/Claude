@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LeadForm from '../components/LeadForm.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import { SITE } from '../config/site';
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Clearbid",
+    "url": "https://clearbid.in/contact/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "ProfessionalService"],
+    "name": SITE.name,
+    "url": SITE.url,
+    "telephone": SITE.phone,
+    "email": SITE.email,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Delhi NCR",
+      "addressCountry": "IN"
+    },
+    "areaServed": SITE.areaServed.map(c => ({ "@type": "City", "name": c }))
+  }
+];
+
+const waText = encodeURIComponent("Hi Clearbid! I'd like to discuss Google Ads for my business.");
+---
+
+<Layout
+  title="Contact Clearbid | Free Google Ads Consultation"
+  description="Get in touch with Clearbid for a free Google Ads consultation. Call, WhatsApp, or fill in the form — we reply within 1 business day."
+  schema={schema}
+>
+  <div class="container-site">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Contact' }
+    ]} />
+  </div>
+
+  <section class="py-16 lg:py-20">
+    <div class="container-site">
+      <div class="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
+
+        <!-- Left: info -->
+        <div>
+          <h1 class="text-4xl font-extrabold text-blue-900 mb-4">
+            Get your free Google Ads audit
+          </h1>
+          <p class="text-lg text-slate-600 mb-8">
+            Fill in the form or reach us directly. We'll review your account (or your market if you're new to ads) and share a clear action plan — no obligation.
+          </p>
+
+          <!-- Contact methods -->
+          <div class="space-y-4 mb-10">
+            <a
+              href={`tel:${SITE.phoneRaw}`}
+              class="flex items-center gap-4 p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors group"
+              onclick="window.dataLayer?.push({event:'call_click',location:'contact_page'})"
+            >
+              <div class="w-10 h-10 bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Call us</p>
+                <p class="font-bold text-blue-900 group-hover:text-orange-500 transition-colors">{SITE.phone}</p>
+              </div>
+            </a>
+
+            <a
+              href={`https://wa.me/${SITE.whatsapp}?text=${waText}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-4 p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors group"
+              onclick="window.dataLayer?.push({event:'whatsapp_click',location:'contact_page'})"
+            >
+              <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">WhatsApp us</p>
+                <p class="font-bold text-green-700 group-hover:text-green-600 transition-colors">{SITE.phone}</p>
+              </div>
+            </a>
+
+            <a
+              href={`mailto:${SITE.email}`}
+              class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors group"
+            >
+              <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
+                  <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Email</p>
+                <p class="font-bold text-slate-800 group-hover:text-orange-500 transition-colors">{SITE.email}</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Booking calendar placeholder -->
+          <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+            <p class="font-semibold text-blue-900 mb-2">Book a call directly</p>
+            <p class="text-sm text-slate-500 mb-3">
+              [PLACEHOLDER: Embed your Calendly/booking widget here. Replace this block with:
+              &lt;div class="calendly-inline-widget" data-url="https://calendly.com/..."&gt;&lt;/div&gt;]
+            </p>
+            <a href="/contact/" class="text-sm font-semibold text-blue-700 underline">
+              Or just fill in the form →
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
+          <LeadForm variant="full" heading="Tell us about your business" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

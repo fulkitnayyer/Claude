@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTASection from '../../components/ui/CTASection.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+
+const locations = [
+  { city: 'Gurgaon', href: '/locations/google-ads-agency-gurgaon/', live: true, desc: 'Real estate, healthcare, education, and professional services in Gurugram.' },
+  { city: 'Delhi', href: '/locations/google-ads-agency-delhi/', live: false, desc: 'Covering Central Delhi, South Delhi, West Delhi, Dwarka, Rohini, and more.' },
+  { city: 'Noida', href: '/locations/google-ads-agency-noida/', live: false, desc: 'Sectors 18, 62, 63, Greater Noida, Noida Extension, and Tech Park corridor.' },
+  { city: 'Faridabad', href: '/locations/google-ads-agency-faridabad/', live: false, desc: 'Manufacturing, retail, and service businesses in Faridabad and Ballabhgarh.' },
+  { city: 'Ghaziabad', href: '/locations/google-ads-agency-ghaziabad/', live: false, desc: 'Indirapuram, Vaishali, Crossing Republik, and Raj Nagar Extension.' },
+];
+---
+
+<Layout
+  title="Google Ads Agency Locations — Delhi NCR | Clearbid"
+  description="Clearbid serves businesses across Delhi NCR — Gurgaon, Delhi, Noida, Faridabad, Ghaziabad. Localised Google Ads management for each city."
+>
+  <div class="container-site">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Locations' }
+    ]} />
+  </div>
+
+  <section class="bg-gradient-to-br from-blue-950 to-blue-800 text-white py-16 text-center">
+    <div class="container-site max-w-3xl">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Google Ads Agency — Delhi NCR</h1>
+      <p class="text-blue-100 text-lg">
+        We serve businesses across the Delhi NCR region. Each location page has genuinely localised content — not just a city name swap.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20">
+    <div class="container-site">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {locations.map(loc => (
+          <div class={`rounded-xl border p-6 ${loc.live ? 'border-blue-200 bg-white hover:shadow-md transition-shadow' : 'border-slate-100 bg-slate-50'}`}>
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-xl font-bold text-blue-900">{loc.city}</h2>
+              {loc.live
+                ? <span class="bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">Live</span>
+                : <span class="bg-slate-200 text-slate-500 text-xs font-semibold px-2 py-1 rounded-full">Coming soon</span>
+              }
+            </div>
+            <p class="text-sm text-slate-600 mb-4">{loc.desc}</p>
+            {loc.live
+              ? <a href={loc.href} class="text-sm font-semibold text-orange-500 hover:text-orange-600 transition-colors">View page →</a>
+              : <span class="text-sm text-slate-400">In progress</span>
+            }
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</Layout>

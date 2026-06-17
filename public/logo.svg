@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 44" fill="none" role="img" aria-label="Clearbid">
+  <!-- Lettermark: stylised "C" with aperture gap suggesting clarity/target -->
+  <path d="M22 8 A14 14 0 1 0 22 36 A14 14 0 0 1 22 36" stroke="#1a4f7a" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <circle cx="22" cy="22" r="4" fill="#f97316"/>
+  <!-- Wordmark -->
+  <text x="44" y="31" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="20" fill="#1a4f7a" letter-spacing="-0.5">clear<tspan fill="#f97316">bid</tspan></text>
+</svg>

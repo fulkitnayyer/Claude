@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import { SITE } from '../config/site';
+
+const updated = '17 June 2026';
+---
+
+<Layout
+  title="Privacy Policy | Clearbid"
+  description="Clearbid privacy policy — how we collect, use, and protect your personal data, including compliance with India's Digital Personal Data Protection Act (DPDP) 2023."
+>
+  <div class="container-site">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Privacy Policy' }
+    ]} />
+  </div>
+
+  <article class="py-12 lg:py-16">
+    <div class="container-site max-w-3xl prose prose-slate prose-headings:text-blue-900 prose-a:text-blue-700">
+      <h1 class="text-3xl font-extrabold text-blue-900 mb-2">Privacy Policy</h1>
+      <p class="text-slate-500 text-sm mb-10">Last updated: {updated}</p>
+
+      <div class="space-y-8 text-slate-700 leading-relaxed">
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">1. Who we are</h2>
+          <p>
+            <strong>{SITE.name}</strong> ("we", "our", "us") is a Google Ads management agency operating in Delhi NCR, India.
+            We can be contacted at <a href={`mailto:${SITE.email}`} class="text-blue-700 underline">{SITE.email}</a>
+            or <a href={`tel:${SITE.phoneRaw}`} class="text-blue-700 underline">{SITE.phone}</a>.
+          </p>
+          <p class="mt-2">This Privacy Policy applies to our website at <a href={SITE.url} class="text-blue-700 underline">{SITE.url}</a> and to information collected through our lead forms, phone calls, and WhatsApp communications.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">2. What personal data we collect</h2>
+          <p>We collect the following categories of personal data:</p>
+          <ul class="list-disc pl-6 space-y-1 mt-2 text-sm">
+            <li><strong>Contact details:</strong> name, phone number, email address.</li>
+            <li><strong>Business information:</strong> website URL, industry, monthly ad budget (optional).</li>
+            <li><strong>Message content:</strong> any information you voluntarily share in the form's message field.</li>
+            <li><strong>Technical data:</strong> IP address, browser type, pages visited, time on site, referral source, device type — collected via Google Analytics 4 and Google Tag Manager.</li>
+            <li><strong>Advertising data:</strong> Google Click ID (gclid), UTM parameters — used for attribution of which ads generated enquiries.</li>
+            <li><strong>Cookie data:</strong> see Section 6 below.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">3. Why we collect it (purposes and legal bases)</h2>
+          <div class="space-y-3 text-sm">
+            <p><strong>To respond to your enquiry</strong> — we use your name, phone, and email to contact you about the audit or service you requested. Legal basis: performance of a contract / pre-contractual steps.</p>
+            <p><strong>To improve our services</strong> — we analyse aggregated, anonymised analytics data to understand how users interact with the site. Legal basis: legitimate interests.</p>
+            <p><strong>To measure advertising performance</strong> — gclid and conversion data are used in Google Ads and GA4 to understand which campaigns generate leads. Legal basis: legitimate interests.</p>
+            <p><strong>To send marketing communications</strong> — only if you have explicitly opted in. You may unsubscribe at any time. Legal basis: consent.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">4. How we share your data</h2>
+          <p class="text-sm">We do not sell your personal data. We may share it with:</p>
+          <ul class="list-disc pl-6 space-y-1 mt-2 text-sm">
+            <li><strong>Google LLC</strong> — via Google Analytics, Google Ads, and Google Tag Manager for analytics and advertising attribution. Google's privacy policy: <a href="https://policies.google.com/privacy" class="text-blue-700 underline" rel="noopener noreferrer" target="_blank">policies.google.com/privacy</a>.</li>
+            <li><strong>Form/CRM service provider</strong> — [PLACEHOLDER: name of your form backend or CRM, e.g. Formspree, HubSpot, Zoho CRM]. Data is processed on their servers per their privacy policy.</li>
+            <li><strong>Professional advisers</strong> — legal, accounting, or tax advisers where required by law.</li>
+            <li><strong>Law enforcement</strong> — where we are legally required to do so.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">5. Data retention</h2>
+          <p class="text-sm">We retain your personal data for as long as necessary to provide the service you requested and for a reasonable period thereafter for record-keeping and legal compliance purposes. Analytics data is retained in accordance with our GA4 settings (default: 14 months). You may request deletion at any time — see Section 8.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">6. Cookies and tracking</h2>
+          <p class="text-sm mb-2">Our website uses the following types of cookies and tracking technologies:</p>
+          <ul class="list-disc pl-6 space-y-1 text-sm">
+            <li><strong>Strictly necessary:</strong> session cookies required for the website to function.</li>
+            <li><strong>Analytics (Google Analytics 4):</strong> collect anonymised data about how visitors use the site. You may opt out via browser settings or the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" class="text-blue-700 underline">GA opt-out browser add-on</a>.</li>
+            <li><strong>Advertising (Google Ads):</strong> the gclid cookie tracks which ad click led to a form submission. This is first-party data stored on our domain.</li>
+            <li><strong>Google Tag Manager:</strong> a tag management system that loads the above scripts. GTM itself does not collect personal data.</li>
+          </ul>
+          <p class="mt-2 text-sm">A cookie consent banner is displayed on first visit. You may update your preferences at any time via the banner or by contacting us.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">7. India's Digital Personal Data Protection Act (DPDP) 2023</h2>
+          <p class="text-sm">
+            We comply with India's <strong>Digital Personal Data Protection Act 2023</strong>. As a Data Fiduciary operating in India:
+          </p>
+          <ul class="list-disc pl-6 space-y-1 mt-2 text-sm">
+            <li>We collect only the personal data that is necessary for the stated purposes.</li>
+            <li>We process data only for lawful purposes with your consent or on a legitimate basis.</li>
+            <li>We implement appropriate technical and organisational security measures to protect your data.</li>
+            <li>We will notify you and the appropriate authority in the event of a personal data breach that is likely to result in harm.</li>
+            <li>You have the right to access, correct, and erase your personal data — see Section 8.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">8. Your rights</h2>
+          <p class="text-sm mb-2">You have the right to:</p>
+          <ul class="list-disc pl-6 space-y-1 text-sm">
+            <li><strong>Access</strong> the personal data we hold about you.</li>
+            <li><strong>Correct</strong> inaccurate or incomplete data.</li>
+            <li><strong>Erase</strong> your data ("right to be forgotten"), subject to legal retention requirements.</li>
+            <li><strong>Withdraw consent</strong> at any time where processing is based on consent.</li>
+            <li><strong>Object</strong> to processing for direct marketing.</li>
+            <li><strong>Data portability</strong> where technically feasible.</li>
+          </ul>
+          <p class="mt-2 text-sm">To exercise any of these rights, email us at <a href={`mailto:${SITE.email}`} class="text-blue-700 underline">{SITE.email}</a>. We will respond within 30 days.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">9. Security</h2>
+          <p class="text-sm">Our website is served over HTTPS. Form submissions are transmitted securely. We do not store payment card data. We take reasonable technical and organisational measures to protect your data, but no internet transmission is 100% secure.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">10. Third-party links</h2>
+          <p class="text-sm">Our site may contain links to third-party websites (e.g. WhatsApp, Calendly). We are not responsible for their privacy practices. Please review their privacy policies.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">11. Changes to this policy</h2>
+          <p class="text-sm">We may update this policy from time to time. The "Last updated" date above reflects the most recent revision. Continued use of the site after changes constitutes acceptance of the revised policy.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-blue-900 mb-3">12. Contact</h2>
+          <p class="text-sm">
+            For privacy-related questions or to exercise your rights, contact:<br />
+            <strong>{SITE.name}</strong><br />
+            Email: <a href={`mailto:${SITE.email}`} class="text-blue-700 underline">{SITE.email}</a><br />
+            Phone: <a href={`tel:${SITE.phoneRaw}`} class="text-blue-700 underline">{SITE.phone}</a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </article>
+</Layout>

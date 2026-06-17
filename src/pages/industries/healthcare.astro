@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTASection from '../../components/ui/CTASection.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+---
+
+<Layout
+  title="Google Ads for Healthcare in Delhi NCR | Clearbid"
+  description="Google Ads for hospitals, clinics, and diagnostic centres in Delhi NCR. Generate patient appointments from local search. Free audit."
+>
+  <div class="container-site">
+    <Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'Industries', href: '/industries/' }, { label: 'Healthcare' }]} />
+  </div>
+
+  <section class="bg-gradient-to-br from-blue-950 to-blue-800 text-white py-16 lg:py-20">
+    <div class="container-site max-w-3xl">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-6">Google Ads for Healthcare</h1>
+      <p class="text-lg text-blue-100 mb-8">
+        Patients searching for "cardiologist in Gurgaon" or "dentist near me in Noida" are ready to book. We build Google Ads campaigns that put healthcare providers in front of local patients at the moment they're searching.
+      </p>
+      <a href="/contact/" class="btn-primary inline-flex text-base px-8 py-4">Get a Free Healthcare Audit</a>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20">
+    <div class="container-site max-w-4xl">
+      <h2 class="text-3xl font-bold text-blue-900 mb-6">We work with</h2>
+      <div class="flex flex-wrap gap-3 mb-10">
+        {['Multi-specialty hospitals', 'Clinics', 'Diagnostic centres', 'Dental practices', 'Dermatology clinics', 'Orthopaedic centres', 'Physiotherapy', 'Wellness & Ayurveda'].map(t => (
+          <span class="bg-blue-50 text-blue-800 text-sm font-medium px-4 py-2 rounded-full border border-blue-100">{t}</span>
+        ))}
+      </div>
+
+      <h2 class="text-2xl font-bold text-blue-900 mb-4">Healthcare Google Ads — what's different</h2>
+      <p class="text-slate-600 mb-4">Healthcare advertising on Google requires careful compliance with Google's healthcare & medicines policy. We know the policies, avoid restricted content, and build compliant campaigns that still perform.</p>
+      <p class="text-slate-600 mb-6">We focus on appointment-booking intent keywords, call extensions, and local targeting by radius from your clinic — so your budget reaches patients who can actually visit you.</p>
+
+      <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+        <p class="text-sm font-semibold text-orange-500 uppercase tracking-wider mb-2">Case study</p>
+        <p class="text-slate-500 italic text-sm">[PLACEHOLDER: Add a real healthcare case study here.]</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection heading="Bring in more patients with Google Ads" primaryLabel="Get My Free Healthcare Audit" />
+</Layout>
+
+<style>
+  .btn-primary { display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:0.5rem;background-color:#f97316;color:white;font-weight:600;transition:background-color 0.2s; }
+  .btn-primary:hover { background-color:#ea580c; }
+</style>

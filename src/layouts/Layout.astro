@@ -1,0 +1,129 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingContacts from '../components/FloatingContacts.astro';
+import { SITE, TRACKING } from '../config/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  schema?: object | object[];
+  canonicalURL?: string;
+}
+
+const {
+  title,
+  description = SITE.description,
+  ogImage = '/og-image.png',
+  noindex = false,
+  schema,
+  canonicalURL = new URL(Astro.url.pathname, SITE.url).href,
+} = Astro.props;
+
+const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#1a4f7a" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, SITE.url).href} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, SITE.url).href} />
+
+    <!-- Preload primary font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    />
+
+    <!-- Google Tag Manager — replace ID before launch -->
+    <!-- [PLACEHOLDER: GTM-XXXXXXX] -->
+    <!--
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','PLACEHOLDER_GTM_ID');
+    </script>
+    -->
+
+    <!-- Structured Data -->
+    {schemas.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+
+    <!-- Site-wide Organization schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+      "name": SITE.name,
+      "url": SITE.url,
+      "logo": `${SITE.url}/logo.svg`,
+      "description": SITE.description,
+      "telephone": SITE.phone,
+      "email": SITE.email,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Delhi NCR",
+        "addressRegion": "Delhi",
+        "addressCountry": "IN"
+      },
+      "areaServed": SITE.areaServed.map(city => ({
+        "@type": "City",
+        "name": city
+      })),
+      "serviceType": "Google Ads Management",
+      "sameAs": []
+    })} />
+  </head>
+  <body>
+    <!-- GTM noscript fallback — [PLACEHOLDER: GTM-XXXXXXX] -->
+    <!--
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=PLACEHOLDER_GTM_ID"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    -->
+
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingContacts />
+  </body>
+</html>
