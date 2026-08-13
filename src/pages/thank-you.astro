@@ -2,72 +2,69 @@
 import Layout from '../layouts/Layout.astro';
 import { SITE } from '../config/site';
 
-const waText = encodeURIComponent("Hi Clearbid! I just submitted a form and wanted to follow up.");
+const waText = encodeURIComponent("Hi, I just submitted the audit form and wanted to follow up.");
+
+const nextSteps = [
+  { label: 'First', body: 'We review what you shared — usually within a few hours.' },
+  { label: 'Then', body: "We reach out by WhatsApp or email to confirm details, if we need anything more." },
+  { label: 'Finally', body: 'You get a written audit: what\'s wrong with the account and what we\'d change — no pitch attached.' },
+];
 ---
 
 <Layout
-  title="Thank You | Clearbid"
-  description="We've received your enquiry and will be in touch within 1 business day."
+  title={`Thank you | ${SITE.name}`}
+  description="We've received your enquiry and will be in touch within one business day."
   noindex={true}
+  hideFooterCTA
 >
-  <section class="min-h-[80vh] flex items-center py-20">
-    <div class="container-site text-center max-w-2xl">
-      <!-- Success icon -->
-      <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-        <svg class="w-10 h-10 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
-        </svg>
-      </div>
-
-      <h1 class="text-4xl font-extrabold text-blue-900 mb-4">
-        Got it — thank you!
-      </h1>
-      <p class="text-lg text-slate-600 mb-8">
-        We've received your enquiry and will review your account details. You'll hear back from us within <strong>1 business day</strong>.
+  <section class="section thank-you">
+    <div class="container thank-you-inner">
+      <p class="eyebrow">Got it</p>
+      <h1>Thanks — we've got your details.</h1>
+      <p class="lede">
+        We'll review what you shared and get back to you within <strong>one business day</strong>,
+        by WhatsApp or email — whichever you'd rather use.
       </p>
 
-      <div class="bg-slate-50 rounded-xl p-6 mb-8 text-left">
-        <h2 class="font-bold text-blue-900 mb-3">What happens next</h2>
-        <ol class="space-y-3 text-sm text-slate-600">
-          <li class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">1</span>
-            <span>We review the information you shared (usually within a few hours).</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">2</span>
-            <span>We reach out by phone or WhatsApp to schedule your free audit call.</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">3</span>
-            <span>You receive a written audit report with findings and a clear action plan — no pitch required.</span>
-          </li>
-        </ol>
+      <div class="thank-you-steps">
+        {nextSteps.map(step => (
+          <div class="thank-you-step">
+            <p class="thank-you-step-label">{step.label}</p>
+            <p class="muted">{step.body}</p>
+          </div>
+        ))}
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={`https://wa.me/${SITE.whatsapp}?text=${waText}`} target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-          onclick="window.dataLayer?.push({event:'whatsapp_click',location:'thank_you'})"
-        >
+      <div class="thank-you-actions">
+        <a href={`https://wa.me/${SITE.whatsapp}?text=${waText}`} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
           Follow up on WhatsApp
         </a>
-        <a href="/" class="inline-flex items-center gap-2 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white font-semibold px-6 py-3 rounded-lg transition-all">
-          Back to homepage
-        </a>
+        <a href="/" class="btn btn-secondary">Back to homepage</a>
       </div>
     </div>
   </section>
 </Layout>
 
-<!-- Conversion tracking fires on this page -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'generate_lead',
-    form_location: 'thank_you_page',
-  });
+<style>
+  .thank-you { padding-block: 5rem; }
+  .thank-you-inner { max-width: 34rem; }
+  .thank-you-inner h1 { margin-block: 0.6rem 1rem; }
+  .thank-you-inner .lede { max-width: none; margin-bottom: 2.5rem; }
 
-  // [PLACEHOLDER: Google Ads conversion snippet]
-  // Replace with actual conversion tag from your Google Ads account once set up.
-  // gtag('event', 'conversion', { 'send_to': 'AW-XXXXXXXXX/conversion_label' });
-</script>
+  .thank-you-steps { display: flex; flex-direction: column; margin-bottom: 2.5rem; }
+  .thank-you-step {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+    padding-block: 1.1rem;
+    border-top: 1px solid var(--rule);
+  }
+  .thank-you-step:last-child { border-bottom: 1px solid var(--rule); }
+  .thank-you-step-label {
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-size: var(--fs-sm);
+  }
+
+  .thank-you-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+</style>

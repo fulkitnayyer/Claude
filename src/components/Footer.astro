@@ -2,70 +2,128 @@
 import { SITE } from '../config/site';
 ---
 
-<footer class="bg-blue-950 text-slate-300">
-  <div class="container-site py-12 lg:py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-
-      <!-- Brand + NAP -->
-      <div class="lg:col-span-2">
-        <a href="/" aria-label="Clearbid — Home">
-          <img src="/logo-dark.svg" alt="Clearbid" width="160" height="35" class="h-8 w-auto mb-4" loading="lazy" />
-        </a>
-        <p class="text-sm text-slate-400 mb-4 max-w-xs">
-          Google Ads management for small and mid-sized businesses across Delhi NCR. More leads, less wasted spend.
-        </p>
-        <!-- NAP block for local SEO -->
-        <address class="not-italic text-sm text-slate-400 space-y-1">
-          <p class="font-semibold text-white">{SITE.name}</p>
-          <p>{SITE.address}</p>
-          <p>
-            <a href={`tel:${SITE.phoneRaw}`} class="hover:text-white transition-colors" onclick="window.dataLayer?.push({event:'call_click',location:'footer'})">
-              {SITE.phone}
-            </a>
-          </p>
-          <p>
-            <a href={`mailto:${SITE.email}`} class="hover:text-white transition-colors">
-              {SITE.email}
-            </a>
-          </p>
-        </address>
-      </div>
-
-      <!-- Services -->
-      <div>
-        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Services</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/services/google-ads-management/" class="hover:text-white transition-colors">Google Ads Management</a></li>
-          <li><a href="/services/google-ads-audit/" class="hover:text-white transition-colors">Google Ads Audit</a></li>
-          <li><a href="/services/campaign-setup/" class="hover:text-white transition-colors">Campaign Setup</a></li>
-          <li><a href="/services/conversion-tracking/" class="hover:text-white transition-colors">Conversion Tracking</a></li>
-          <li><a href="/pricing/" class="hover:text-white transition-colors">Pricing & Packages</a></li>
-        </ul>
-      </div>
-
-      <!-- Company -->
-      <div>
-        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/about/" class="hover:text-white transition-colors">About</a></li>
-          <li><a href="/results/" class="hover:text-white transition-colors">Case Studies</a></li>
-          <li><a href="/blog/" class="hover:text-white transition-colors">Blog</a></li>
-          <li><a href="/contact/" class="hover:text-white transition-colors">Contact</a></li>
-          <li><a href="/locations/google-ads-agency-gurgaon/" class="hover:text-white transition-colors">Gurgaon</a></li>
-          <li><a href="/locations/google-ads-agency-delhi/" class="hover:text-white transition-colors">Delhi</a></li>
-          <li><a href="/locations/google-ads-agency-noida/" class="hover:text-white transition-colors">Noida</a></li>
-        </ul>
-      </div>
+<footer class="site-footer tint-ink">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="wordmark" aria-label={`${SITE.name} — Home`}>
+        <svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 7v9" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+          <path d="M16 16H9M16 16h7" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+          <path d="M9 16v6M23 16v6" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+          <rect x="7" y="23" width="4" height="4" fill="currentColor"/>
+          <rect x="21" y="23" width="4" height="4" fill="#c0362c"/>
+        </svg>
+        <span>Structure</span>
+      </a>
+      <p class="muted footer-desc">
+        Google Ads and Meta Ads management, run by a former Google Ads Account Strategist. For local businesses and for agencies who want it white-labelled.
+      </p>
+      <address>
+        <p>{SITE.address}</p>
+        <p><a href={`tel:${SITE.phoneRaw}`}>{SITE.phone}</a></p>
+        <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+      </address>
     </div>
 
-    <!-- Bottom bar -->
-    <div class="mt-10 pt-8 border-t border-blue-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-      <p>&copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
-      <div class="flex items-center gap-4">
-        <!-- [PLACEHOLDER: Google Partner badge — add once genuinely earned] -->
-        <a href="/privacy-policy/" class="hover:text-white transition-colors">Privacy Policy</a>
-        <a href="/terms/" class="hover:text-white transition-colors">Terms of Use</a>
-      </div>
+    <div>
+      <h3 class="footer-heading">Site</h3>
+      <ul>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/industries/">Industries</a></li>
+        <li><a href="/white-label/">White-label partners</a></li>
+        <li><a href="/how-it-works/">How it works</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="footer-heading">Get started</h3>
+      <ul>
+        <li><a href="/contact/">Free account audit</a></li>
+        <li><a href={`https://wa.me/${SITE.whatsapp}`}>WhatsApp us</a></li>
+        <li><a href="/privacy-policy/">Privacy policy</a></li>
+        <li><a href="/terms/">Terms of use</a></li>
+      </ul>
     </div>
   </div>
+
+  <div class="container footer-bottom">
+    <p class="muted">&copy; {new Date().getFullYear()} {SITE.legalName}. All rights reserved.</p>
+    <p class="muted">Google Ads Certified · Meta Blueprint Certified</p>
+  </div>
 </footer>
+
+<style>
+  .site-footer {
+    padding-block: 3.5rem 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--paper);
+    margin-bottom: 1rem;
+  }
+
+  .footer-desc {
+    max-width: 34ch;
+    font-size: var(--fs-sm);
+    margin-bottom: 1.25rem;
+  }
+
+  address {
+    font-style: normal;
+    font-size: var(--fs-sm);
+    color: color-mix(in srgb, var(--paper) 80%, var(--ink));
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  address a:hover { color: var(--paper); text-decoration: underline; }
+
+  .footer-heading {
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--paper) 65%, var(--ink));
+    margin-bottom: 1rem;
+  }
+
+  .footer-grid ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    font-size: var(--fs-sm);
+  }
+  .footer-grid a { color: color-mix(in srgb, var(--paper) 88%, var(--ink)); }
+  .footer-grid a:hover { color: var(--paper); text-decoration: underline; }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+    font-size: var(--fs-xs);
+  }
+
+  @media (min-width: 640px) {
+    .footer-bottom { flex-direction: row; justify-content: space-between; }
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  }
+</style>

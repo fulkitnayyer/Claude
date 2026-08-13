@@ -1,121 +1,207 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CTASection from '../../components/ui/CTASection.astro';
 import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import { SITE } from '../../config/site';
 
 const services = [
   {
-    title: 'Google Ads Management',
-    desc: 'Full ongoing management — strategy, campaign optimisation, bid management, reporting. Weekly refinements, dedicated manager.',
-    href: '/services/google-ads-management/',
-    icon: '⚙️',
-    badge: 'Most popular',
+    id: 'google-ads',
+    name: 'Google Ads management',
+    dek: 'Search campaigns, structured by service and urgency — not one campaign covering everything.',
+    included: [
+      'Search campaigns split by service and urgency, each with its own budget and bid strategy',
+      'Negative keyword lists reviewed and updated weekly, not set once and left alone',
+      'Conversion tracking — calls, form fills, WhatsApp clicks — live before spend starts, not after',
+      'A monthly report that\'s the same document we\'d use internally, not a client-facing summary',
+      'Full admin access to your own Google Ads account, always',
+    ],
+    excluded: [
+      'Display, Discovery, and YouTube campaigns by default — they dilute Search budget without matching its intent; we\'ll add them if your account is ready for it',
+      'Blog or website content writing',
+      'Organic social posting — that\'s a different job to paid Meta Ads',
+    ],
+    price: 'From ₹25,000/month + ad spend, for one city and one core service.',
   },
   {
-    title: 'Google Ads Audit',
-    desc: 'In-depth review of your existing campaigns. Identify wasted spend, keyword gaps, quality score issues, and quick wins.',
-    href: '/services/google-ads-audit/',
-    icon: '🔎',
-    badge: 'Best starting point',
+    id: 'meta-ads',
+    name: 'Meta Ads (Instagram & Facebook)',
+    dek: 'Lead, awareness, and retargeting campaigns kept in separate structures — each optimising for a different job.',
+    included: [
+      'Campaign structure split by objective: new leads, retargeting past visitors, and awareness kept apart',
+      'Ad copy and creative briefs — you or your designer supplies the images/video, or we can source stock for an added fee',
+      'Meta Pixel and Conversions API setup, so iOS 14.5+ tracking gaps are minimised',
+      'A monthly report, same format as Google Ads',
+    ],
+    excluded: [
+      'Video production or photography',
+      'Influencer outreach or partnerships',
+      'Organic posting and community management',
+    ],
+    price: 'From ₹20,000/month + ad spend, standalone or alongside Google Ads.',
   },
   {
-    title: 'Campaign Setup',
-    desc: 'Launch new Search, Display, Shopping, or Performance Max campaigns architected for performance from day one.',
-    href: '/services/campaign-setup/',
-    icon: '🚀',
-    badge: null,
+    id: 'landing-pages',
+    name: 'Landing pages & conversion rate optimisation',
+    dek: 'A dedicated page per core service, built for a paid click — not repurposed from your homepage.',
+    included: [
+      'One landing page per core service, separate from your main website',
+      'Mobile-first layout with click-to-call and WhatsApp buttons above the fold',
+      'Page speed checked against real mobile network conditions, not just desktop wifi',
+      'One A/B test per month on your highest-traffic page, once there\'s enough volume to read a result',
+    ],
+    excluded: [
+      'A full website rebuild',
+      'Hosting — we\'ll recommend one, we don\'t host it ourselves',
+      'Ongoing blog or content pages',
+    ],
+    price: '₹15,000 – ₹35,000 per page, one-time. First page is included at no extra cost if your combined ad spend is above ₹50,000/month.',
   },
   {
-    title: 'Conversion Tracking Setup',
-    desc: 'Server-side tracking, enhanced conversions, GA4, and Google Tag Manager — so you always know which ads drive revenue.',
-    href: '/services/conversion-tracking/',
-    icon: '📊',
-    badge: null,
+    id: 'call-tracking',
+    name: 'Call tracking',
+    dek: 'A tracking number per campaign, so every call is attributed to the exact ad that paid for it.',
+    included: [
+      'A tracking number per campaign (or per ad group, on higher-spend accounts)',
+      'Call recordings with consent disclosure, so we can separate a real lead from a wrong number or a tyre-kicker',
+      'Integration into Google Ads for call-based bid strategies',
+    ],
+    excluded: [
+      'A full CRM',
+      'Staff training on how to answer the phone — though the reports will make it obvious when that\'s the actual problem',
+    ],
+    price: '₹2,500 – ₹5,000/month depending on call volume. Free for the first 90 days on any retainer.',
   },
 ];
 
-const processSteps = [
-  { step: '01', title: 'Discovery call', desc: 'We learn about your business, goals, and current ad setup (or absence of one).' },
-  { step: '02', title: 'Audit & strategy', desc: 'We audit your account or market, then build a tailored strategy and campaign structure.' },
-  { step: '03', title: 'Launch & track', desc: 'Campaigns go live with full conversion tracking wired up from the start.' },
-  { step: '04', title: 'Optimise monthly', desc: 'Weekly refinements, A/B testing, and a plain-English monthly report — every month.' },
-];
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "provider": { "@type": "Organization", "name": SITE.legalName },
+  "serviceType": services.map(s => s.name),
+};
 ---
 
 <Layout
-  title="Google Ads Services for SMBs | Clearbid"
-  description="Full-service Google Ads management, audits, campaign setup, and conversion tracking for small businesses in Delhi NCR. Transparent pricing, no lock-in."
+  title={`Services & pricing | ${SITE.name}`}
+  description="Google Ads, Meta Ads, landing pages, and call tracking — what's included, what isn't, and what it costs in rupees."
+  schema={schema}
 >
-  <div class="container-site">
-    <Breadcrumbs crumbs={[
-      { label: 'Home', href: '/' },
-      { label: 'Services' }
-    ]} />
-  </div>
+  <div class="container"><Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]} /></div>
 
-  <!-- Hero -->
-  <section class="bg-gradient-to-br from-blue-950 to-blue-800 text-white py-16 lg:py-20">
-    <div class="container-site text-center">
-      <h1 class="text-4xl sm:text-5xl font-extrabold mb-6">Google Ads Services</h1>
-      <p class="text-lg text-blue-100 max-w-2xl mx-auto mb-8">
-        Everything you need to run profitable Google Ads — from your first campaign to scaling an already-performing account. Built for small and mid-sized businesses across Delhi NCR.
+  <section class="section services-hero">
+    <div class="container">
+      <p class="eyebrow">Services</p>
+      <h1>Four services. Nothing bundled in that you didn't ask for.</h1>
+      <p class="lede">
+        Each one is scoped separately — because most agencies pad a Google Ads retainer with
+        vague "social media management" and "SEO support" that never gets real hours. If you
+        want more than one of these, they're priced and reported separately, so you can see
+        exactly where the money goes.
       </p>
-      <a href="/contact/" class="btn-primary text-base px-8 py-4 inline-flex">
-        Get My Free Google Ads Audit
-      </a>
     </div>
   </section>
 
-  <!-- Services grid -->
-  <section class="py-16 lg:py-20">
-    <div class="container-site">
-      <div class="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        {services.map(service => (
-          <a
-            href={service.href}
-            class="relative bg-white rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-200 p-8 group flex flex-col"
-          >
-            {service.badge && (
-              <span class="absolute top-4 right-4 bg-orange-100 text-orange-700 text-xs font-semibold px-2 py-1 rounded-full">
-                {service.badge}
-              </span>
-            )}
-            <div class="text-4xl mb-4" aria-hidden="true">{service.icon}</div>
-            <h2 class="text-xl font-bold text-blue-900 mb-3 group-hover:text-orange-500 transition-colors">
-              {service.title}
-            </h2>
-            <p class="text-slate-600 text-sm flex-1">{service.desc}</p>
-            <span class="mt-6 text-sm font-semibold text-orange-500 group-hover:translate-x-1 inline-block transition-transform">
-              Learn more →
-            </span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Process strip -->
-  <section class="py-16 lg:py-20 bg-slate-50">
-    <div class="container-site">
-      <h2 class="text-3xl font-bold text-blue-900 text-center mb-10">How we work</h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-        {processSteps.map(item => (
-          <div class="bg-white rounded-xl p-6 text-center border border-slate-200">
-            <div class="w-12 h-12 rounded-full bg-orange-50 border-2 border-orange-200 flex items-center justify-center mx-auto mb-4">
-              <span class="text-lg font-extrabold text-orange-500">{item.step}</span>
-            </div>
-            <h3 class="font-bold text-blue-900 mb-2">{item.title}</h3>
-            <p class="text-sm text-slate-600">{item.desc}</p>
+  {services.map((service, i) => (
+    <>
+      <section class="section service-block" id={service.id}>
+        <div class="container service-grid">
+          <div class="service-head">
+            <p class="eyebrow">0{i + 1}</p>
+            <h2>{service.name}</h2>
+            <p class="lede">{service.dek}</p>
+            <p class="service-price tnum">{service.price}</p>
+            <a href="/contact/" class="btn btn-primary">Get the free audit</a>
           </div>
-        ))}
+          <div class="service-lists">
+            <div class="service-list">
+              <h3>What's included</h3>
+              <ul>
+                {service.included.map(item => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div class="service-list service-list-excluded">
+              <h3>What isn't</h3>
+              <ul>
+                {service.excluded.map(item => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      {i < services.length - 1 && <div class="rule"></div>}
+    </>
+  ))}
+
+  <div class="rule"></div>
+
+  <section class="section pricing-note tint">
+    <div class="container pricing-note-grid">
+      <div>
+        <p class="eyebrow">Pricing, honestly</p>
+        <h2>The floor is ₹25,000/month plus ad spend. The ceiling depends on you.</h2>
+      </div>
+      <div>
+        <p>
+          A single-city, single-service Google Ads account starts at the floor above. Add a
+          second city, a second platform, or a second service line, and the retainer scales —
+          quoted after the audit, once we've actually seen your account, not before. No setup
+          fee. No annual contract — 30 days' notice either way.
+        </p>
       </div>
     </div>
   </section>
-
-  <CTASection />
 </Layout>
 
 <style>
-  .btn-primary { display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:0.5rem;background-color:#f97316;color:white;font-weight:600;transition:background-color 0.2s; }
-  .btn-primary:hover { background-color:#ea580c; }
+  .services-hero { padding-bottom: 1rem; }
+  .services-hero h1 { margin-block: 0.6rem 1rem; max-width: 22ch; }
+
+  .service-block { padding-block: 3rem; }
+  .service-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 900px) {
+    .service-grid { grid-template-columns: 0.8fr 1.2fr; gap: 4rem; }
+  }
+
+  .service-head h2 { margin-block: 0.4rem 0.75rem; font-size: var(--fs-h2); }
+  .service-head .lede { margin-bottom: 1.25rem; }
+  .service-price {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    margin-bottom: 1.5rem;
+    max-width: 30ch;
+  }
+
+  .service-lists {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 560px) {
+    .service-lists { grid-template-columns: 1fr 1fr; }
+  }
+
+  .service-list h3 {
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 0.85rem;
+  }
+  .service-list ul { display: flex; flex-direction: column; gap: 0.75rem; }
+  .service-list li {
+    font-size: var(--fs-sm);
+    padding-left: 1rem;
+    border-left: 2px solid var(--ink);
+    max-width: 42ch;
+  }
+  .service-list-excluded li { border-left-color: var(--rule); color: var(--muted); }
+
+  .pricing-note-grid { display: grid; gap: 1.5rem; }
+  @media (min-width: 900px) {
+    .pricing-note-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  }
+  .pricing-note-grid h2 { margin-top: 0.6rem; }
 </style>

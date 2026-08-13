@@ -1,0 +1,165 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import { SITE } from '../../config/site';
+
+const steps = [
+  {
+    n: '01',
+    name: 'Audit',
+    when: 'Week 1, days 1–3',
+    body: "We go through your existing account — or, if you're not running ads yet, two or three competitors in your city — and write down what's actually wrong: campaign structure, search terms, tracking gaps, landing pages. This is the same document from the free audit; nothing new happens here once you've signed on.",
+  },
+  {
+    n: '02',
+    name: 'Structure',
+    when: 'Week 1, days 4–7',
+    body: "Campaigns get rebuilt around service and urgency, not left as one account doing five jobs. Ad groups, negative keyword lists, and conversion tracking (calls, forms, WhatsApp clicks) are all planned and built before anything goes live — this is the part most agencies skip to save time.",
+  },
+  {
+    n: '03',
+    name: 'Launch',
+    when: 'Week 2',
+    body: "Campaigns go live with conservative daily budgets. Every conversion action is tested manually — a real call, a real form submission — before we trust the reporting. First 72 hours get checked daily, not left to run unattended over a weekend.",
+  },
+  {
+    n: '04',
+    name: 'Optimise',
+    when: 'Weeks 3 onward',
+    body: "Weekly passes on search terms, negative keywords, and bid adjustments. By week 4 there's usually enough click volume per ad group to trust the data, rather than guessing — that's when the first real budget shifts happen, moving spend toward what's actually converting.",
+  },
+  {
+    n: '05',
+    name: 'Report',
+    when: 'Monthly, by the 5th working day',
+    body: "A written report in plain English: what was spent, what came in, cost per lead by campaign, and what's changing next month. It's the same format we'd use to review the account ourselves — not a highlight reel.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How Structure runs a Google Ads or Meta Ads account",
+  "step": steps.map(s => ({ "@type": "HowToStep", "name": s.name, "text": s.body })),
+};
+---
+
+<Layout
+  title={`How it works | ${SITE.name}`}
+  description="Audit, structure, launch, optimise, report — what happens in week 1 versus week 4, and every step in between."
+  schema={schema}
+>
+  <div class="container"><Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'How it works' }]} /></div>
+
+  <section class="section hiw-hero">
+    <div class="container">
+      <p class="eyebrow">How it works</p>
+      <h1>Five steps. The only numbered list on this site, because this part is genuinely sequential.</h1>
+    </div>
+  </section>
+
+  <section class="section hiw-steps">
+    <div class="container">
+      {steps.map(step => (
+        <article class="hiw-step">
+          <p class="hiw-number stat-figure">{step.n}</p>
+          <div class="hiw-step-body">
+            <div class="hiw-step-head">
+              <h2>{step.name}</h2>
+              <p class="hiw-when tnum">{step.when}</p>
+            </div>
+            <p class="muted">{step.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="section hiw-compare tint">
+    <div class="container hiw-compare-grid">
+      <div>
+        <p class="eyebrow">Week 1 vs. week 4</p>
+        <h2>Week 1 is built on the audit. Week 4 is built on real data.</h2>
+      </div>
+      <div class="hiw-compare-cols">
+        <div>
+          <h3>Week 1</h3>
+          <p class="muted">
+            No live data yet. Every decision — campaign split, starting bids, negative keyword
+            list — comes from the audit and keyword research, not from clicks. This is the
+            highest-judgment, lowest-certainty part of the whole process, which is why it gets
+            the most manual attention.
+          </p>
+        </div>
+        <div>
+          <h3>Week 4</h3>
+          <p class="muted">
+            Usually 50–100+ clicks per ad group by now — enough to see which search terms
+            actually convert, which don't, and where the landing page is losing people. First
+            real budget reallocation happens here, moving spend toward what the data (not the
+            plan) says is working.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hiw-cta">
+    <div class="container">
+      <h2>Start with the audit — it's step one either way.</h2>
+      <a href="/contact/" class="btn btn-primary">Get the free audit</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hiw-hero h1 { margin-block: 0.6rem 0; max-width: 30ch; }
+
+  .hiw-steps { padding-top: 1rem; }
+  .hiw-step {
+    display: grid;
+    gap: 0.75rem 2.5rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .hiw-step:last-child { border-bottom: 1px solid var(--rule); }
+
+  @media (min-width: 800px) {
+    .hiw-step { grid-template-columns: 6rem 1fr; align-items: baseline; }
+  }
+
+  .hiw-number { font-size: 2.25rem; color: var(--accent); }
+
+  .hiw-step-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .hiw-step-head h2 { font-size: var(--fs-h3); }
+  .hiw-when {
+    font-family: var(--font-display);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .hiw-step-body p.muted { max-width: 60ch; }
+
+  .hiw-compare-grid { display: grid; gap: 2rem; }
+  .hiw-compare-grid h2 { margin-block: 0.6rem 0; max-width: 26ch; }
+  @media (min-width: 900px) {
+    .hiw-compare-grid { grid-template-columns: 0.8fr 1.2fr; gap: 4rem; }
+  }
+  .hiw-compare-cols { display: grid; gap: 2rem; }
+  @media (min-width: 640px) {
+    .hiw-compare-cols { grid-template-columns: 1fr 1fr; }
+  }
+  .hiw-compare-cols h3 { font-size: var(--fs-body); margin-bottom: 0.5rem; }
+
+  .hiw-cta h2 { margin-bottom: 1.25rem; max-width: 28ch; }
+</style>

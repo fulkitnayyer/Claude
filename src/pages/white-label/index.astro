@@ -1,0 +1,175 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WhiteLabelForm from '../../components/WhiteLabelForm.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import { SITE } from '../../config/site';
+---
+
+<Layout
+  title={`White-label Google & Meta Ads for agencies | ${SITE.name}`}
+  description="Outsource Google Ads and Meta Ads execution under your own brand. NDA signed before access, reporting on your letterhead, fixed turnaround times."
+  hideFooterCTA
+>
+  <div class="container"><Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'White-label' }]} /></div>
+
+  <section class="section wl-hero">
+    <div class="container">
+      <p class="eyebrow">For marketing agencies</p>
+      <h1>We run the accounts. You keep the client.</h1>
+      <p class="lede">
+        You're already selling SEO, web design, or social — and clients keep asking for Google
+        or Meta Ads. This is the execution layer: we build and run the accounts, you stay the
+        agency of record. No branding of ours ever reaches your client.
+      </p>
+      <a href="#partner-form" class="btn btn-primary">Request a partner call</a>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="section wl-split">
+    <div class="container wl-split-grid">
+      <div>
+        <h2>What you keep</h2>
+        <ul class="wl-list">
+          <li>The client relationship — we don't contact them unless you're on the call and want us to</li>
+          <li>Pricing and markup — you set what the client pays, we invoice you at agency rate</li>
+          <li>Strategy calls and presentations, if you want to run those yourself</li>
+          <li>Your brand on every report, dashboard, and piece of communication</li>
+        </ul>
+      </div>
+      <div>
+        <h2>What we do</h2>
+        <ul class="wl-list wl-list-accent">
+          <li>Account structure and build, from the audit through launch</li>
+          <li>Daily bid and budget management</li>
+          <li>Ad copy and creative drafts, sent to you for approval before anything goes live</li>
+          <li>Weekly optimisation notes, written so you can forward them as-is or rewrite in your voice</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="section wl-details tint">
+    <div class="container wl-details-grid">
+      <article>
+        <h3>Reporting under your brand</h3>
+        <p>
+          Every report — PDF, dashboard, or slide — carries your agency's name and logo, not
+          ours. If you want us on client calls, we join as "your team," on mute unless you
+          bring us in. Most partners keep us entirely off client calls, which is the default.
+        </p>
+      </article>
+      <article>
+        <h3>NDA, before we see anything</h3>
+        <p>
+          We sign an NDA before any account access is shared — yours or ours, whichever your
+          legal team prefers. Client names and account data never appear in our internal
+          material, our portfolio, or anywhere public, without separate written permission from
+          you.
+        </p>
+      </article>
+      <article>
+        <h3>Turnaround times</h3>
+        <ul class="wl-turnaround">
+          <li><span>Audit</span><span class="tnum">3 business days</span></li>
+          <li><span>New account build, after brief</span><span class="tnum">5–7 business days</span></li>
+          <li><span>Monthly report delivered</span><span class="tnum">by the 5th working day</span></li>
+          <li><span>Pause / budget change requests</span><span class="tnum">same day, before 3pm IST</span></li>
+        </ul>
+      </article>
+      <article>
+        <h3>Capacity</h3>
+        <p>
+          We take on a fixed number of agency partners at a time so account quality doesn't
+          drop as volume grows. Currently open to partners handing over up to 8 accounts a
+          month combined — past that, new accounts go on a short waitlist rather than being
+          rushed.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="section wl-pricing">
+    <div class="container wl-pricing-grid">
+      <div>
+        <p class="eyebrow">Pricing</p>
+        <h2>₹18,000/month + ad spend per account, at agency rate.</h2>
+        <p class="lede">
+          You bill your client whatever you'd like on top. Multi-account partners get a flat
+          rate agreed once, not renegotiated per account. No setup fee, no minimum term.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wl-form" id="partner-form">
+    <div class="container wl-form-grid">
+      <div>
+        <p class="eyebrow">Get started</p>
+        <h2>Tell us what you're already selling and how many accounts you'd hand over.</h2>
+        <p class="lede">
+          We'll come back with capacity, a sample report format, and a proposed turnaround —
+          usually within one business day.
+        </p>
+      </div>
+      <div>
+        <WhiteLabelForm heading="Request a partner call" />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .wl-hero { padding-bottom: 1rem; }
+  .wl-hero h1 { margin-block: 0.6rem 1rem; max-width: 20ch; }
+  .wl-hero .lede { max-width: 52ch; margin-bottom: 1.75rem; }
+
+  .wl-split-grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 800px) {
+    .wl-split-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  }
+  .wl-split-grid h2 { margin-bottom: 1.25rem; font-size: var(--fs-h2); }
+  .wl-list { display: flex; flex-direction: column; gap: 0.85rem; }
+  .wl-list li {
+    font-size: var(--fs-sm);
+    color: var(--muted);
+    padding-left: 1rem;
+    border-left: 2px solid var(--rule);
+    max-width: 42ch;
+  }
+  .wl-list-accent li { border-left-color: var(--ink); color: var(--ink); }
+
+  .wl-details-grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 800px) {
+    .wl-details-grid { grid-template-columns: 1fr 1fr; gap: 3rem 4rem; }
+  }
+  .wl-details-grid h3 { font-size: var(--fs-h3); margin-bottom: 0.6rem; }
+  .wl-details-grid p { color: var(--muted); font-size: var(--fs-sm); max-width: 52ch; }
+
+  .wl-turnaround { display: flex; flex-direction: column; gap: 0.6rem; }
+  .wl-turnaround li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: var(--fs-sm);
+    padding-block: 0.5rem;
+    border-top: 1px solid var(--rule);
+  }
+  .wl-turnaround li:first-child { border-top: none; }
+  .wl-turnaround li span:first-child { color: var(--muted); }
+  .wl-turnaround li span:last-child { font-family: var(--font-display); font-weight: 600; }
+
+  .wl-pricing-grid h2 { margin-block: 0.6rem 1rem; max-width: 24ch; }
+  .wl-pricing-grid .lede { max-width: 52ch; }
+
+  .wl-form-grid { display: grid; gap: 2.5rem; align-items: start; }
+  @media (min-width: 900px) {
+    .wl-form-grid { grid-template-columns: 0.85fr 1fr; gap: 4rem; }
+  }
+  .wl-form-grid h2 { margin-block: 0.6rem 1rem; }
+</style>

@@ -1,0 +1,198 @@
+---
+// The signature element: a real-looking before/after Google Ads account
+// structure for a sample plumbing account. Structure, not illustration.
+
+const before = {
+  label: 'Before',
+  sub: 'One campaign for everything',
+  nodes: [
+    {
+      campaign: 'Plumbing Services',
+      meta: 'Search · Broad match · Same bid, all day',
+      groups: [
+        {
+          name: 'Plumber',
+          terms: 'plumber near me, emergency plumber, tap repair, AMC plumbing, pipe fitting',
+          flag: "Emergency leaks and annual maintenance share one budget and one bid.",
+        },
+        {
+          name: 'Website Traffic',
+          terms: 'plumbing company, plumbing services Delhi',
+          flag: 'Broad match pulls in "plumbing courses" and "plumbing supply shop" searches.',
+        },
+      ],
+    },
+  ],
+};
+
+const after = {
+  label: 'After',
+  sub: 'Split by service and urgency',
+  nodes: [
+    {
+      campaign: 'Emergency Plumbing — South Delhi',
+      meta: 'Search · Phrase/exact · Live 24/7 · Bids +40%',
+      groups: [
+        { name: 'Leak Repair', terms: 'burst pipe, leak repair, water leakage', flag: null },
+        { name: 'Blocked Drain', terms: 'blocked drain, clogged pipe emergency', flag: null },
+      ],
+    },
+    {
+      campaign: 'Installation & Fittings — South Delhi',
+      meta: 'Search · Phrase match · 9am–8pm',
+      groups: [
+        { name: 'Tap & Fixture Installation', terms: 'tap installation, fixture fitting', flag: null },
+        { name: 'Pipe Fitting', terms: 'pipe fitting service, repiping', flag: null },
+      ],
+    },
+    {
+      campaign: 'AMC & Maintenance — South Delhi',
+      meta: 'Search · Phrase match · Lower bid cap',
+      groups: [
+        { name: 'Annual Maintenance', terms: 'plumbing AMC, maintenance contract', flag: null },
+      ],
+    },
+  ],
+};
+---
+
+<div class="structure-compare">
+  <div class="structure-col structure-before">
+    <div class="structure-col-head">
+      <span class="structure-tag structure-tag-before">{before.label}</span>
+      <span class="muted">{before.sub}</span>
+    </div>
+    {before.nodes.map(campaign => (
+      <div class="structure-campaign">
+        <p class="structure-campaign-name">{campaign.campaign}</p>
+        <p class="structure-campaign-meta muted">{campaign.meta}</p>
+        <ul class="structure-groups">
+          {campaign.groups.map(group => (
+            <li class="structure-group">
+              <p class="structure-group-name">{group.name}</p>
+              <p class="structure-group-terms muted">{group.terms}</p>
+              {group.flag && <p class="structure-flag">{group.flag}</p>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <div class="structure-col structure-after">
+    <div class="structure-col-head">
+      <span class="structure-tag structure-tag-after">{after.label}</span>
+      <span class="muted">{after.sub}</span>
+    </div>
+    {after.nodes.map(campaign => (
+      <div class="structure-campaign">
+        <p class="structure-campaign-name">{campaign.campaign}</p>
+        <p class="structure-campaign-meta muted">{campaign.meta}</p>
+        <ul class="structure-groups">
+          {campaign.groups.map(group => (
+            <li class="structure-group">
+              <p class="structure-group-name">{group.name}</p>
+              <p class="structure-group-terms muted">{group.terms}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .structure-compare {
+    display: grid;
+    gap: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  @media (min-width: 900px) {
+    .structure-compare {
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .structure-before { border-right: 1px solid var(--rule); }
+  }
+
+  .structure-col {
+    padding: 1.5rem 0;
+  }
+  @media (min-width: 900px) {
+    .structure-col { padding: 1.75rem 1.75rem; }
+    .structure-before { padding-left: 0; }
+  }
+
+  .structure-col-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+    font-size: var(--fs-sm);
+  }
+
+  .structure-tag {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius);
+  }
+  .structure-tag-before { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+  .structure-tag-after { background: color-mix(in srgb, var(--ink) 9%, transparent); color: var(--ink); }
+
+  .structure-campaign {
+    padding-block: 0.9rem;
+    border-top: 1px solid var(--rule);
+  }
+  .structure-campaign:first-of-type { border-top: none; padding-top: 0; }
+
+  .structure-campaign-name {
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-size: var(--fs-body);
+    margin-bottom: 0.15rem;
+  }
+
+  .structure-campaign-meta {
+    font-size: var(--fs-xs);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.75rem;
+  }
+
+  .structure-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .structure-group {
+    padding-left: 1rem;
+    border-left: 2px solid var(--rule);
+  }
+
+  .structure-group-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+  }
+
+  .structure-group-terms {
+    font-size: var(--fs-xs);
+    margin-top: 0.1rem;
+  }
+
+  .structure-flag {
+    font-size: var(--fs-xs);
+    color: var(--accent);
+    margin-top: 0.35rem;
+    font-family: var(--font-display);
+    font-weight: 550;
+  }
+
+  .structure-before .structure-group { border-left-color: color-mix(in srgb, var(--accent) 45%, var(--rule)); }
+  .structure-after .structure-group { border-left-color: var(--ink); }
+</style>

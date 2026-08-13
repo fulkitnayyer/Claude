@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /thank-you/
 
-Sitemap: https://clearbid.in/sitemap-index.xml
+Sitemap: https://structureads.in/sitemap-index.xml

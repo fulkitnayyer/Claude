@@ -1,0 +1,172 @@
+---
+import { FORM } from '../config/site';
+
+interface Props {
+  heading?: string;
+}
+
+const { heading } = Astro.props;
+const formId = 'partner-form';
+---
+
+<div class="lead-form">
+  {heading && <h3 class="lead-form-heading">{heading}</h3>}
+
+  <form id={formId} class="lead-form-el" novalidate data-endpoint={FORM.whiteLabelEndpoint}>
+    <div class="honeypot" aria-hidden="true">
+      <label for={`${formId}-trap`}>Leave this empty</label>
+      <input type="text" id={`${formId}-trap`} name="website_url_trap" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="form-grid form-grid-2">
+      <div class="field">
+        <label for={`${formId}-agency`}>Agency name *</label>
+        <input type="text" id={`${formId}-agency`} name="agency" required autocomplete="organization" placeholder="Your agency's name" />
+      </div>
+      <div class="field">
+        <label for={`${formId}-website`}>Website *</label>
+        <input type="url" id={`${formId}-website`} name="website" required autocomplete="url" placeholder="https://youragency.com" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for={`${formId}-services`}>Services you already sell *</label>
+      <input
+        type="text"
+        id={`${formId}-services`}
+        name="services_sold"
+        required
+        placeholder="e.g. SEO, web design, social media management"
+      />
+    </div>
+
+    <div class="form-grid form-grid-2">
+      <div class="field">
+        <label for={`${formId}-volume`}>Accounts you'd hand over per month *</label>
+        <select id={`${formId}-volume`} name="account_volume" required>
+          <option value="">Select a range</option>
+          <option value="1-2">1–2 accounts</option>
+          <option value="3-5">3–5 accounts</option>
+          <option value="6-10">6–10 accounts</option>
+          <option value="10+">10+ accounts</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for={`${formId}-contact`}>Your name *</label>
+        <input type="text" id={`${formId}-contact`} name="contact_name" required autocomplete="name" placeholder="Your name" />
+      </div>
+    </div>
+
+    <div class="form-grid form-grid-2">
+      <div class="field">
+        <label for={`${formId}-email`}>Work email *</label>
+        <input type="email" id={`${formId}-email`} name="email" required autocomplete="email" placeholder="you@youragency.com" />
+      </div>
+      <div class="field">
+        <label for={`${formId}-phone`}>Phone / WhatsApp *</label>
+        <div class="phone-input">
+          <span class="phone-prefix">+91</span>
+          <input
+            type="tel"
+            id={`${formId}-phone`}
+            name="phone"
+            required
+            inputmode="numeric"
+            autocomplete="tel-national"
+            placeholder="98765 43210"
+            pattern="[0-9]{10}"
+            maxlength="10"
+          />
+        </div>
+      </div>
+    </div>
+
+    <p class="field-error" id={`${formId}-error`} role="alert"></p>
+
+    <button type="submit" class="btn btn-primary btn-block lead-submit">
+      <span class="submit-text">Request partner call</span>
+    </button>
+
+    <p class="lead-form-fineprint muted">We'll sign an NDA before we see anything about your clients.</p>
+  </form>
+</div>
+
+<script define:vars={{ formId }}>
+  const form = document.getElementById(formId);
+  if (form) {
+    const errorEl = document.getElementById(`${formId}-error`);
+
+    function showError(msg) {
+      if (!errorEl) return;
+      errorEl.textContent = msg;
+      errorEl.classList.add('is-visible');
+    }
+    function clearError() {
+      if (!errorEl) return;
+      errorEl.textContent = '';
+      errorEl.classList.remove('is-visible');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearError();
+
+      const data = new FormData(form);
+      if (data.get('website_url_trap')) return;
+
+      const phone = String(data.get('phone') || '');
+      if (!/^[0-9]{10}$/.test(phone)) {
+        showError('Enter a valid 10-digit phone number.');
+        return;
+      }
+      const email = String(data.get('email') || '');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Enter a valid email address.');
+        return;
+      }
+
+      const submitBtn = form.querySelector('.lead-submit');
+      const submitText = form.querySelector('.submit-text');
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitText) submitText.textContent = 'Sending…';
+
+      try {
+        const endpoint = form.dataset.endpoint || '/api/partner-lead';
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data,
+        });
+        if (res.ok) {
+          window.location.href = '/thank-you/';
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        showError('Something went wrong. Please email or WhatsApp us directly instead.');
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitText) submitText.textContent = 'Request partner call';
+      }
+    });
+  }
+</script>
+
+<style>
+  .lead-form-heading { margin-bottom: 1.25rem; }
+  .lead-form-el { display: flex; flex-direction: column; gap: 1.1rem; }
+  .phone-input { display: flex; align-items: stretch; }
+  .phone-prefix {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+    border-right: none;
+    border-top-left-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+    background: color-mix(in srgb, var(--ink) 4%, var(--paper));
+    font-size: var(--fs-sm);
+    color: var(--muted);
+  }
+  .phone-input input { border-top-left-radius: 0; border-bottom-left-radius: 0; flex: 1; min-width: 0; }
+  .lead-form-fineprint { font-size: var(--fs-xs); text-align: center; }
+</style>

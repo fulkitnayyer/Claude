@@ -1,0 +1,59 @@
+---
+import LeadForm from './LeadForm.astro';
+---
+
+<section class="footer-cta" aria-labelledby="footer-cta-heading">
+  <div class="container footer-cta-grid">
+    <div class="footer-cta-copy">
+      <p class="eyebrow">Free account audit</p>
+      <h2 id="footer-cta-heading">We'll tell you what's wrong with your account before you pay us anything.</h2>
+      <p class="lede">
+        Send this over and we'll look at your existing campaigns — or your competitors', if you haven't run ads yet — and send back specific, written findings. No call required to get it.
+      </p>
+    </div>
+    <div class="footer-cta-form">
+      <LeadForm variant="compact" formId="lead-form-footer" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .footer-cta {
+    background: var(--accent);
+    color: var(--accent-ink);
+    padding-block: 3.5rem;
+  }
+
+  .footer-cta :global(.eyebrow) { color: color-mix(in srgb, var(--accent-ink) 80%, transparent); }
+  .footer-cta h2 { color: var(--accent-ink); margin-block: 0.75rem 1rem; }
+  .footer-cta .lede { color: color-mix(in srgb, var(--accent-ink) 88%, transparent); }
+
+  .footer-cta :global(.field label) { color: var(--accent-ink); }
+  .footer-cta :global(.field input),
+  .footer-cta :global(.field select),
+  .footer-cta :global(.field textarea) {
+    border-color: color-mix(in srgb, var(--accent-ink) 55%, transparent);
+  }
+  .footer-cta :global(.phone-prefix) {
+    background: color-mix(in srgb, var(--accent-ink) 12%, transparent);
+    border-color: color-mix(in srgb, var(--accent-ink) 55%, transparent);
+    color: var(--accent-ink);
+  }
+  .footer-cta :global(.btn-primary) {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .footer-cta :global(.lead-form-fineprint) {
+    color: color-mix(in srgb, var(--accent-ink) 75%, transparent);
+  }
+
+  .footer-cta-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .footer-cta-grid { grid-template-columns: 0.85fr 1fr; gap: 4rem; }
+  }
+</style>

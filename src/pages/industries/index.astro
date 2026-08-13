@@ -1,57 +1,187 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CTASection from '../../components/ui/CTASection.astro';
 import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import { SITE } from '../../config/site';
 
-const industries = [
-  { name: 'Real Estate', href: '/industries/real-estate/', live: true, desc: 'Residential developers, plotted projects, commercial leasing across Delhi NCR.' },
-  { name: 'Healthcare', href: '/industries/healthcare/', live: true, desc: 'Hospitals, clinics, diagnostic centres, dental practices, and wellness brands.' },
-  { name: 'Education', href: '/industries/education/', live: true, desc: 'Coaching institutes, schools, universities, and ed-tech platforms.' },
-  { name: 'E-commerce', href: '/industries/ecommerce/', live: false, desc: 'Shopping, Performance Max, and product listing optimisation.' },
-  { name: 'Finance & Insurance', href: '/industries/finance/', live: false, desc: 'Mutual funds, insurance, loans, and wealth management firms.' },
-  { name: 'Hospitality & Travel', href: '/industries/hospitality/', live: false, desc: 'Hotels, tour operators, event venues, and travel agencies.' },
+const homeServices = [
+  {
+    name: 'Plumbers',
+    pain: "Emergency search volume spikes at 11pm on a burst pipe — and if the account's daily budget ran out at 4pm, you lose the highest-intent call of the week.",
+    fix: "A separately funded emergency campaign, live around the clock, kept apart from routine-booking budget.",
+  },
+  {
+    name: 'Electricians',
+    pain: '"Electrician near me" pulls a tripped MCB emergency and a quote-comparison shopper for a full rewiring job — same bid, same ad copy, wrong message for both.',
+    fix: 'Separate campaigns for urgent faults vs. planned work, each with its own ad copy and landing page.',
+  },
+  {
+    name: 'HVAC & AC repair',
+    pain: 'Demand is brutally seasonal — March to June carries the year. An account that spends flat through December burns budget with nothing to show for it.',
+    fix: 'A seasonal budget schedule set in advance, not adjusted after the season\'s already gone.',
+  },
+  {
+    name: 'Pest control',
+    pain: 'A recurring AMC customer and a one-off "I saw a cockroach" panic call need different urgency and offer entirely — bundle them and both messages end up wrong.',
+    fix: 'Campaigns split by contract type, not just by pest.',
+  },
+  {
+    name: 'Home & office cleaning',
+    pain: '"House cleaning" traffic is full of one-time movers and free-trial requests — high click volume that\'s easy to mistake for a working campaign.',
+    fix: 'Qualifying questions built into the landing page form, so cost-per-qualified-lead is tracked separately from cost-per-click.',
+  },
+  {
+    name: 'Appliance repair',
+    pain: 'Brand-specific searches ("LG washing machine repair") convert far better than generic ones, but generic terms eat most of the budget on volume alone.',
+    fix: 'Brand-specific campaigns bid up, generic terms capped at a lower budget share.',
+  },
+  {
+    name: 'Roofing & waterproofing',
+    pain: 'Monsoon leads are worth 3–4x the off-season ones, and competitors bid harder in that window too. An account that doesn\'t raise bids to match loses the season.',
+    fix: 'Bid strategy tied to the calendar, reviewed weekly through the peak months.',
+  },
+  {
+    name: 'Interior design & renovation',
+    pain: 'A single lead can be worth ₹2–5 lakh in project value, so a handful of unqualified enquiries — students "researching", people browsing for ideas — can look like a campaign problem when it\'s a lead-quality problem.',
+    fix: 'A required budget range in the form, so unqualified enquiries self-select out before they cost a phone call.',
+  },
 ];
+
+const localServices = [
+  {
+    name: 'Clinics & healthcare practices',
+    pain: 'Appointment-intent searches sit next to symptom look-ups and free-advice queries. Without tight keyword control, budget goes to people who were never going to book.',
+    fix: 'Appointment-intent keywords isolated from informational searches, with disclaimers handled to Google\'s healthcare ad policy.',
+  },
+  {
+    name: 'Salons & spas',
+    pain: 'Much of "salon near me" traffic is price-comparison shoppers who\'ll book whoever\'s cheapest that week — a blanket discount ad trains exactly that behaviour.',
+    fix: 'Campaigns built around specific services and stylists, not a blanket percentage off.',
+  },
+  {
+    name: 'Gyms & fitness studios',
+    pain: 'January search volume triples and falls off a cliff by March. Most gym accounts spend flat through the year and miss the one month that matters most.',
+    fix: 'Budget front-loaded to enquiry season, with retargeting kept running the rest of the year at a lower cost per lead.',
+  },
+  {
+    name: 'Coaching centres & tuition',
+    pain: 'A parent searches "best NEET coaching near me"; a student searches "how to crack NEET biology." Most accounts send both to the same admissions page.',
+    fix: 'Campaigns split by search intent, each matched to the right landing page.',
+  },
+  {
+    name: 'Real estate agents & brokers',
+    pain: 'A click can cost ₹150–400 in a competitive micro-market, and agents often can\'t tell if a lead came from Ads or from three other channels running at once.',
+    fix: 'UTM and call tracking tied to campaign level, so the real cost-per-lead is visible before anyone decides to cut budget.',
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Industries",
+  "url": `${SITE.url}/industries/`,
+};
 ---
 
 <Layout
-  title="Google Ads for Industries | Clearbid"
-  description="Industry-specific Google Ads management for real estate, healthcare, education, e-commerce, and more. Delhi NCR specialists."
+  title={`Industries we work with | ${SITE.name}`}
+  description="Home services and local services — the specific problems we see in each, and what changes in how the account is built."
+  schema={schema}
 >
-  <div class="container-site">
-    <Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'Industries' }]} />
-  </div>
+  <div class="container"><Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'Industries' }]} /></div>
 
-  <section class="bg-gradient-to-br from-blue-950 to-blue-800 text-white py-16 text-center">
-    <div class="container-site max-w-3xl">
-      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Google Ads by Industry</h1>
-      <p class="text-blue-100 text-lg">
-        Every industry has different buyer intent, CPCs, and conversion patterns. We build campaigns that reflect your specific market.
+  <section class="section industries-hero">
+    <div class="container">
+      <p class="eyebrow">Industries</p>
+      <h1>Every niche has a specific way its ad account goes wrong.</h1>
+      <p class="lede">
+        Not "we understand your industry" — the actual mechanism. This is what we check for
+        first in each of these, before touching a single bid. It's also worth saying once,
+        for all of them: competitor and bot clicks are excluded at the IP and network level
+        from month one, not added later as an upsell.
       </p>
     </div>
   </section>
 
-  <section class="py-16 lg:py-20">
-    <div class="container-site">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        {industries.map(ind => (
-          <div class={`rounded-xl border p-6 ${ind.live ? 'border-blue-200 bg-white hover:shadow-md transition-shadow' : 'border-slate-100 bg-slate-50'}`}>
-            <div class="flex items-center justify-between mb-3">
-              <h2 class="text-lg font-bold text-blue-900">{ind.name}</h2>
-              {ind.live
-                ? <span class="bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">Live</span>
-                : <span class="bg-slate-200 text-slate-500 text-xs font-semibold px-2 py-1 rounded-full">Coming soon</span>
-              }
+  <section class="section industry-group">
+    <div class="container">
+      <h2 class="industry-group-heading">Home & trade services</h2>
+      <div class="industry-list">
+        {homeServices.map(item => (
+          <article class="industry-row">
+            <h3>{item.name}</h3>
+            <div class="industry-row-body">
+              <p><span class="industry-label">The pain:</span> {item.pain}</p>
+              <p><span class="industry-label">What changes:</span> {item.fix}</p>
             </div>
-            <p class="text-sm text-slate-600 mb-4">{ind.desc}</p>
-            {ind.live
-              ? <a href={ind.href} class="text-sm font-semibold text-orange-500 hover:text-orange-600 transition-colors">View page →</a>
-              : <span class="text-sm text-slate-400">In progress</span>
-            }
-          </div>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <CTASection />
+  <div class="rule"></div>
+
+  <section class="section industry-group tint">
+    <div class="container">
+      <h2 class="industry-group-heading">Local services</h2>
+      <div class="industry-list">
+        {localServices.map(item => (
+          <article class="industry-row">
+            <h3>{item.name}</h3>
+            <div class="industry-row-body">
+              <p><span class="industry-label">The pain:</span> {item.pain}</p>
+              <p><span class="industry-label">What changes:</span> {item.fix}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section industries-cta">
+    <div class="container">
+      <h2>Don't see your business listed?</h2>
+      <p class="lede">
+        These are the niches we work in most, not the only ones we take on. Send the audit
+        request and tell us what you do — if account structure and search intent apply to
+        your business (they usually do), the same approach applies.
+      </p>
+      <a href="/contact/" class="btn btn-primary">Get the free audit</a>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .industries-hero { padding-bottom: 1rem; }
+  .industries-hero h1 { margin-block: 0.6rem 1rem; max-width: 24ch; }
+
+  .industry-group-heading {
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+  }
+
+  .industry-list { display: flex; flex-direction: column; }
+  .industry-row {
+    display: grid;
+    gap: 0.5rem 2.5rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--rule);
+  }
+  .industry-row:last-child { border-bottom: 1px solid var(--rule); }
+
+  @media (min-width: 800px) {
+    .industry-row { grid-template-columns: 14rem 1fr; }
+  }
+
+  .industry-row h3 { font-size: var(--fs-h3); }
+  .industry-row-body { display: flex; flex-direction: column; gap: 0.6rem; }
+  .industry-row-body p { color: var(--muted); font-size: var(--fs-sm); max-width: 58ch; }
+  .industry-label { font-family: var(--font-display); font-weight: 650; color: var(--ink); }
+
+  .industries-cta { text-align: left; }
+  .industries-cta h2 { margin-bottom: 0.85rem; }
+  .industries-cta .lede { margin-bottom: 1.5rem; }
+</style>

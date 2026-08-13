@@ -1,49 +1,36 @@
-# Clearbid Brand Guide
+# Structure — brand guide
 
-## Logo concept
-The Clearbid mark is a stylised **open circle with a dot** — suggesting clarity, a target/aim, and an aperture (transparency). The word "clear" is set in the primary deep-blue, "bid" in the orange accent. This dual-colour wordmark makes the brand name legible as two words while feeling like one brand.
+## Positioning
+An ex-Google Ads Account Strategist running Google Ads and Meta Ads for local
+service businesses in India, plus white-label execution for agencies. No
+public case studies (everything prior is under NDA from Google) — trust is
+built on process transparency, not results screenshots.
 
-## Files in `/public`
-| File | Use |
-|---|---|
-| `logo.svg` | Primary horizontal lockup — header on white/light backgrounds |
-| `logo-dark.svg` | Reversed white version — footer and dark backgrounds |
-| `logo-mark.svg` | Icon/monogram only — favicons, app icons, social avatars |
-| `favicon.svg` | Browser tab favicon (SVG) |
-| `favicon.ico` | Browser tab favicon (legacy ICO) |
-| `og-image.svg` | Default social share card — convert to 1200×630 PNG before launch |
+## Mark
+A small structural glyph — a vertical stem branching into two, echoing an
+account/campaign tree. Used at favicon size and next to the wordmark. Not a
+decorative icon; it's literally the shape of the thing the brand is about.
 
-> **Note:** `apple-touch-icon.png` (180×180), `icon-192.png`, and `icon-512.png` need to be generated from `logo-mark.svg` before launch. Use a tool like Inkscape, Figma, or the `sharp` CLI.
-
-## Palette
-| Role | Hex | Usage |
+## Palette — five values, no more
+| Role | Value | Usage |
 |---|---|---|
-| Primary (deep blue) | `#1a4f7a` | Headlines, nav, header background, body text |
-| Primary dark | `#123655` | Hover states, footer |
-| Accent (orange) | `#f97316` | CTA buttons, highlights, the "bid" wordmark |
-| Accent hover | `#ea580c` | Button hover state |
-| Neutral light | `#f8fafc` | Section backgrounds |
-| Neutral border | `#e2e8f0` | Card borders |
-| Body text | `#1e293b` | Paragraphs |
+| Ink | `#14181f` | Body text, headings, primary backgrounds |
+| Paper | `#fbfbf9` | Base background, text on ink |
+| Accent (signal red) | `#c0362c` | Primary buttons, the free-audit callout, one underline — nowhere else |
+| Rule grey | `#dcdad2` | Hairline dividers |
+| Muted grey | `#63666d` | Secondary text |
 
-## Typography
-- **Headings:** Inter (800 weight) — self-hosted via Google Fonts
-- **Body:** Inter (400/500 weight)
-- Fallback stack: `Inter, system-ui, -apple-system, sans-serif`
+Section tints are `color-mix()` blends of ink into paper — never a sixth hex.
 
-## Clear space
-Maintain a minimum clear space of **½ the height of the logomark** around all sides of the logo.
-
-## Minimum size
-- Logo (horizontal): 120px wide minimum
-- Logomark: 24px minimum (16px for favicon — tested)
+## Type
+- **Display:** Inter Tight (600–800) — headlines, set tight and large
+- **Body:** Source Serif 4 — paragraphs, quieter and slower to read than the display face
+- Numbers (₹, CPCs, lead counts) always set in tabular figures (`.tnum` / `.stat-figure`)
 
 ## What NOT to do
-- Do not change the orange accent to any other colour
-- Do not stretch or distort the logo
-- Do not use the logo on a background where it loses contrast — use the dark version on dark backgrounds
-- Do not imply Google affiliation — do not use Google's colour palette as the brand's primary identity
-- Do not display the Google Partner badge until it is officially earned and the official Google asset is provided
-
-## Evolving the brand
-This is a strong starting point. As the agency grows, consider commissioning a professional logomark iteration that goes beyond the SVG wordmark — but keep the name, colour palette, and transparency concept.
+- No gradients, no glassmorphism, no rounded-icon-square feature grids
+- No emoji as section markers; icons only where they carry real meaning (WhatsApp, phone, rupee)
+- No numbered step markers outside the How It Works page
+- No fabricated testimonials, client logos, or "500+ clients" claims — use the
+  `<!-- TESTIMONIAL SLOT -->` comment until there are real ones
+- Do not display a Google Partner badge until it's genuinely earned

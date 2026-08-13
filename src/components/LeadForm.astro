@@ -1,271 +1,203 @@
 ---
+import { FORM, INDUSTRY_OPTIONS, AD_SPEND_RANGES } from '../config/site';
+
 interface Props {
-  variant?: 'hero' | 'full' | 'inline';
+  variant?: 'full' | 'compact';
   heading?: string;
+  formId?: string;
 }
 
-const { variant = 'full', heading } = Astro.props;
+const { variant = 'full', heading, formId = `lead-form-${variant}` } = Astro.props;
 ---
 
-<div class={`lead-form-wrapper ${variant === 'hero' ? 'bg-white rounded-2xl shadow-xl p-6 sm:p-8' : ''}`}>
-  {heading && <h3 class="text-xl font-bold text-blue-900 mb-4">{heading}</h3>}
+<div class="lead-form">
+  {heading && <h3 class="lead-form-heading">{heading}</h3>}
 
-  <form
-    id="lead-form"
-    class="space-y-4"
-    novalidate
-    data-endpoint="[PLACEHOLDER: /api/contact]"
-  >
-    <!-- Honeypot (hidden from real users, catches bots) -->
-    <div class="hidden" aria-hidden="true">
-      <label for="website_url_trap">Leave this empty</label>
-      <input type="text" id="website_url_trap" name="website_url_trap" tabindex="-1" autocomplete="off" />
+  <form id={formId} class="lead-form-el" novalidate data-endpoint={FORM.endpoint}>
+    <div class="honeypot" aria-hidden="true">
+      <label for={`${formId}-trap`}>Leave this empty</label>
+      <input type="text" id={`${formId}-trap`} name="website_url_trap" tabindex="-1" autocomplete="off" />
     </div>
 
-    <!-- Hidden gclid field for offline conversion import -->
-    <input type="hidden" name="gclid" id="gclid-field" />
-
-    <div class={`grid gap-4 ${variant === 'full' ? 'sm:grid-cols-2' : ''}`}>
-      <div>
-        <label for="form-name" class="block text-sm font-medium text-slate-700 mb-1">
-          Full Name <span class="text-red-500" aria-hidden="true">*</span>
-        </label>
-        <input
-          type="text"
-          id="form-name"
-          name="name"
-          required
-          autocomplete="name"
-          placeholder="Rahul Sharma"
-          class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-          aria-required="true"
-        />
-        <p class="text-red-500 text-xs mt-1 hidden" id="name-error" role="alert"></p>
+    <div class="form-grid form-grid-2">
+      <div class="field">
+        <label for={`${formId}-name`}>Name *</label>
+        <input type="text" id={`${formId}-name`} name="name" required autocomplete="name" placeholder="Your name" />
       </div>
+      <div class="field">
+        <label for={`${formId}-business`}>Business name *</label>
+        <input type="text" id={`${formId}-business`} name="business" required autocomplete="organization" placeholder="Your business name" />
+      </div>
+    </div>
 
-      <div>
-        <label for="form-phone" class="block text-sm font-medium text-slate-700 mb-1">
-          Phone Number <span class="text-red-500" aria-hidden="true">*</span>
-        </label>
-        <div class="flex">
-          <span class="inline-flex items-center px-3 border border-r-0 border-slate-300 bg-slate-50 text-slate-500 text-sm rounded-l-lg">+91</span>
+    <div class="form-grid form-grid-2">
+      <div class="field">
+        <label for={`${formId}-city`}>City *</label>
+        <input type="text" id={`${formId}-city`} name="city" required autocomplete="address-level2" placeholder="e.g. Pune" />
+      </div>
+      <div class="field">
+        <label for={`${formId}-industry`}>Industry *</label>
+        <select id={`${formId}-industry`} name="industry" required>
+          <option value="">Select your industry</option>
+          {INDUSTRY_OPTIONS.map(group => (
+            <optgroup label={group.group}>
+              {group.options.map(opt => <option value={opt}>{opt}</option>)}
+            </optgroup>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    {variant === 'full' && (
+      <div class="field">
+        <label for={`${formId}-spend`}>Current monthly ad spend</label>
+        <select id={`${formId}-spend`} name="ad_spend">
+          <option value="">Select a range</option>
+          {AD_SPEND_RANGES.map(r => <option value={r.value}>{r.label}</option>)}
+        </select>
+      </div>
+    )}
+
+    <div class="form-grid form-grid-2">
+      <div class="field">
+        <label for={`${formId}-whatsapp`}>WhatsApp number *</label>
+        <div class="phone-input">
+          <span class="phone-prefix">+91</span>
           <input
             type="tel"
-            id="form-phone"
-            name="phone"
+            id={`${formId}-whatsapp`}
+            name="whatsapp"
             required
-            autocomplete="tel"
+            inputmode="numeric"
+            autocomplete="tel-national"
             placeholder="98765 43210"
             pattern="[0-9]{10}"
             maxlength="10"
-            class="flex-1 px-4 py-3 border border-slate-300 rounded-r-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-            aria-required="true"
-            aria-describedby="phone-error"
           />
         </div>
-        <p class="text-red-500 text-xs mt-1 hidden" id="phone-error" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for={`${formId}-email`}>Email *</label>
+        <input type="email" id={`${formId}-email`} name="email" required autocomplete="email" placeholder="you@business.com" />
       </div>
     </div>
 
-    <div class={`grid gap-4 ${variant === 'full' ? 'sm:grid-cols-2' : ''}`}>
-      <div>
-        <label for="form-email" class="block text-sm font-medium text-slate-700 mb-1">
-          Business Email <span class="text-red-500" aria-hidden="true">*</span>
-        </label>
-        <input
-          type="email"
-          id="form-email"
-          name="email"
-          required
-          autocomplete="email"
-          placeholder="rahul@company.com"
-          class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-          aria-required="true"
-        />
-        <p class="text-red-500 text-xs mt-1 hidden" id="email-error" role="alert"></p>
-      </div>
-
-      <div>
-        <label for="form-website" class="block text-sm font-medium text-slate-700 mb-1">
-          Website URL
-        </label>
-        <input
-          type="url"
-          id="form-website"
-          name="website"
-          autocomplete="url"
-          placeholder="https://yourwebsite.com"
-          class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-        />
-      </div>
+    <div class="field">
+      <label for={`${formId}-problem`}>What's going wrong right now?</label>
+      <textarea
+        id={`${formId}-problem`}
+        name="problem"
+        rows={variant === 'full' ? 3 : 2}
+        placeholder="e.g. leads come in but nobody answers the phone"
+      ></textarea>
     </div>
 
-    {variant === 'full' && (
-      <div class="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label for="form-industry" class="block text-sm font-medium text-slate-700 mb-1">
-            Industry
-          </label>
-          <select
-            id="form-industry"
-            name="industry"
-            class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white"
-          >
-            <option value="">Select industry</option>
-            <option value="real-estate">Real Estate</option>
-            <option value="healthcare">Healthcare / Medical</option>
-            <option value="education">Education / Coaching</option>
-            <option value="ecommerce">E-commerce</option>
-            <option value="finance">Finance / Insurance</option>
-            <option value="hospitality">Hospitality / Travel</option>
-            <option value="retail">Retail</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
+    <p class="field-error" id={`${formId}-error`} role="alert"></p>
 
-        <div>
-          <label for="form-budget" class="block text-sm font-medium text-slate-700 mb-1">
-            Monthly Ad Budget
-          </label>
-          <select
-            id="form-budget"
-            name="budget"
-            class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white"
-          >
-            <option value="">Select range</option>
-            <option value="under-25k">Under ₹25,000</option>
-            <option value="25k-50k">₹25,000 – ₹50,000</option>
-            <option value="50k-1l">₹50,000 – ₹1,00,000</option>
-            <option value="1l-3l">₹1,00,000 – ₹3,00,000</option>
-            <option value="above-3l">Above ₹3,00,000</option>
-          </select>
-        </div>
-      </div>
-    )}
-
-    {variant === 'full' && (
-      <div>
-        <label for="form-message" class="block text-sm font-medium text-slate-700 mb-1">
-          Tell us about your goals (optional)
-        </label>
-        <textarea
-          id="form-message"
-          name="message"
-          rows="3"
-          placeholder="e.g. We want more leads for our real estate projects in Gurgaon..."
-          class="w-full px-4 py-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none"
-        ></textarea>
-      </div>
-    )}
-
-    <!-- Global form error -->
-    <p class="text-red-500 text-sm hidden" id="form-error" role="alert"></p>
-
-    <button
-      type="submit"
-      id="form-submit"
-      class="w-full btn-primary text-base py-4 relative"
-    >
-      <span id="submit-text">Get My Free Google Ads Audit</span>
-      <span id="submit-loading" class="hidden absolute inset-0 flex items-center justify-center">
-        <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-        </svg>
-        <span class="sr-only">Sending...</span>
-      </span>
+    <button type="submit" class="btn btn-primary btn-block lead-submit">
+      <span class="submit-text">Get my free account audit</span>
     </button>
 
-    <div class="text-center space-y-1">
-      <p class="text-xs text-slate-500">No obligation. We'll reply within 1 business day.</p>
-      <p class="text-xs text-slate-400">We'll never share your details.</p>
-    </div>
+    <p class="lead-form-fineprint muted">No obligation. We reply within one business day. We never share your details.</p>
   </form>
 </div>
 
-<script>
-  // Populate gclid from URL param
-  const urlParams = new URLSearchParams(window.location.search);
-  const gclid = urlParams.get('gclid');
-  if (gclid) {
-    const gclidField = document.getElementById('gclid-field') as HTMLInputElement;
-    if (gclidField) gclidField.value = gclid;
-    // Also store in cookie for later pages
-    document.cookie = `gclid=${gclid};path=/;max-age=${90 * 24 * 60 * 60}`;
-  } else {
-    // Try cookie
-    const gclidCookie = document.cookie.split(';').find(c => c.trim().startsWith('gclid='));
-    if (gclidCookie) {
-      const gclidField = document.getElementById('gclid-field') as HTMLInputElement;
-      if (gclidField) gclidField.value = gclidCookie.split('=')[1];
+<script define:vars={{ formId }}>
+  const form = document.getElementById(formId);
+  if (form) {
+    const errorEl = document.getElementById(`${formId}-error`);
+
+    function showError(msg) {
+      if (!errorEl) return;
+      errorEl.textContent = msg;
+      errorEl.classList.add('is-visible');
     }
-  }
+    function clearError() {
+      if (!errorEl) return;
+      errorEl.textContent = '';
+      errorEl.classList.remove('is-visible');
+    }
 
-  const form = document.getElementById('lead-form') as HTMLFormElement;
-  if (!form) throw new Error('Lead form not found');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearError();
 
-  function showError(id: string, msg: string) {
-    const el = document.getElementById(id);
-    if (el) { el.textContent = msg; el.classList.remove('hidden'); }
-  }
-  function clearError(id: string) {
-    const el = document.getElementById(id);
-    if (el) { el.textContent = ''; el.classList.add('hidden'); }
-  }
+      const data = new FormData(form);
+      if (data.get('website_url_trap')) return;
 
-  function validateForm(data: FormData): boolean {
-    let valid = true;
-    ['name-error', 'phone-error', 'email-error', 'form-error'].forEach(clearError);
-
-    const name = data.get('name') as string;
-    const phone = data.get('phone') as string;
-    const email = data.get('email') as string;
-
-    if (!name?.trim()) { showError('name-error', 'Please enter your name.'); valid = false; }
-    if (!phone?.match(/^[0-9]{10}$/)) { showError('phone-error', 'Enter a valid 10-digit mobile number.'); valid = false; }
-    if (!email?.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) { showError('email-error', 'Enter a valid email address.'); valid = false; }
-
-    return valid;
-  }
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-
-    // Honeypot check
-    if (data.get('website_url_trap')) return;
-
-    if (!validateForm(data)) return;
-
-    const submitBtn = document.getElementById('form-submit') as HTMLButtonElement;
-    const submitText = document.getElementById('submit-text');
-    const submitLoading = document.getElementById('submit-loading');
-
-    submitBtn.disabled = true;
-    submitText?.classList.add('invisible');
-    submitLoading?.classList.remove('hidden');
-
-    try {
-      const endpoint = form.dataset.endpoint || '/api/contact';
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: data,
-      });
-
-      if (res.ok) {
-        // Push conversion event
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'generate_lead', form_location: 'page' });
-        window.location.href = '/thank-you/';
-      } else {
-        throw new Error('Server error');
+      const whatsapp = String(data.get('whatsapp') || '');
+      if (!/^[0-9]{10}$/.test(whatsapp)) {
+        showError('Enter a valid 10-digit WhatsApp number.');
+        return;
       }
-    } catch {
-      showError('form-error', 'Something went wrong. Please try calling us directly or WhatsApp us.');
-      submitBtn.disabled = false;
-      submitText?.classList.remove('invisible');
-      submitLoading?.classList.add('hidden');
-    }
-  });
+      const email = String(data.get('email') || '');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Enter a valid email address.');
+        return;
+      }
+
+      const submitBtn = form.querySelector('.lead-submit');
+      const submitText = form.querySelector('.submit-text');
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitText) submitText.textContent = 'Sending…';
+
+      try {
+        const endpoint = form.dataset.endpoint || '/api/lead';
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data,
+        });
+        if (res.ok) {
+          window.location.href = '/thank-you/';
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        showError("Something went wrong. Please WhatsApp us directly instead — it's faster anyway.");
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitText) submitText.textContent = 'Get my free account audit';
+      }
+    });
+  }
 </script>
+
+<style>
+  .lead-form-heading {
+    margin-bottom: 1.25rem;
+  }
+
+  .lead-form-el {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .phone-input {
+    display: flex;
+    align-items: stretch;
+  }
+  .phone-prefix {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+    border-right: none;
+    border-top-left-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+    background: color-mix(in srgb, var(--ink) 4%, var(--paper));
+    font-size: var(--fs-sm);
+    color: var(--muted);
+  }
+  .phone-input input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .lead-form-fineprint {
+    font-size: var(--fs-xs);
+    text-align: center;
+  }
+</style>

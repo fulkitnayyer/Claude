@@ -1,91 +1,162 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CTASection from '../components/ui/CTASection.astro';
 import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import { SITE } from '../config/site';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About",
+  "url": `${SITE.url}/about/`,
+  "mainEntity": {
+    "@type": "Person",
+    "name": SITE.founderName,
+    "jobTitle": "Founder",
+    "worksFor": { "@type": "Organization", "name": SITE.legalName },
+  },
+};
 ---
 
 <Layout
-  title="About Clearbid | Google Ads Experts in Delhi NCR"
-  description="About Clearbid — who we are, our approach to Google Ads, and why we founded a transparent, no-nonsense Google Ads agency for SMBs in Delhi NCR."
+  title={`About — ${SITE.founderName} | ${SITE.name}`}
+  description="Three years as a Google Ads Account Strategist inside Google. Why that job doesn't look like what most agencies do, and why I left to fix that gap directly."
+  schema={schema}
 >
-  <div class="container-site">
-    <Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
-  </div>
+  <div class="container"><Breadcrumbs crumbs={[{ label: 'Home', href: '/' }, { label: 'About' }]} /></div>
 
-  <section class="bg-gradient-to-br from-blue-950 to-blue-800 text-white py-16 lg:py-20">
-    <div class="container-site max-w-3xl">
-      <h1 class="text-4xl sm:text-5xl font-extrabold mb-6">About Clearbid</h1>
-      <p class="text-lg text-blue-100">
-        We started Clearbid because we saw too many small businesses in Delhi NCR get burned by opaque agencies, inflated fees, and campaigns that were set-and-forgotten. We wanted to do it differently.
+  <section class="section about-hero">
+    <div class="container">
+      <p class="eyebrow">About</p>
+      <h1>I spent three years telling advertisers what their agencies should have told them already.</h1>
+    </div>
+  </section>
+
+  <section class="section about-essay">
+    <div class="container about-essay-inner">
+      <p class="lede">
+        My name's {SITE.founderName}. Before {SITE.name}, I was a Google Ads Account Strategist
+        at Google — not an agency employee, an actual Google employee, sitting inside the
+        systems that decide who wins an auction and why. This page is longer than most "about"
+        pages because that job is genuinely misunderstood, and it explains most of how I
+        run accounts now.
       </p>
+
+      <h2>What an Account Strategist actually does</h2>
+      <p>
+        It's not sales, even though the title sounds like it. Google assigns Account
+        Strategists to advertisers who spend enough to warrant direct support — and the job is
+        to sit on calls with those advertisers (and often their agencies) and go through the
+        account the way an internal reviewer would: campaign structure, bidding strategy,
+        conversion tracking, creative testing. You're looking at the same dashboards the
+        advertiser sees, plus a few Google doesn't expose publicly, and telling them, plainly,
+        what's costing them money and why.
+      </p>
+      <p>
+        The strange part of the job is how often the answer had nothing to do with Google's
+        algorithm and everything to do with how the account was built. An account with one
+        campaign covering four different services, no negative keywords, and a conversion
+        action that fired on every page load — that account was never going to perform well,
+        no matter how the auction behaved that week. I said a version of that sentence,
+        or something close to it, in probably four hundred calls over three years.
+      </p>
+
+      <h2>Why I left</h2>
+      <p>
+        Two things sat next to each other for a long time before I did anything about them.
+        First: the advertisers I spoke with directly — the ones large enough to get an Account
+        Strategist — got noticeably better results almost immediately, just from someone
+        walking through the account with actual rigor. Second: almost none of that rigor was
+        reaching the businesses too small to ever get that kind of attention from Google
+        itself. A clinic in Indore or a plumber in Thane was never going to get a call from
+        someone like me — they were going to get whichever agency answered the phone first,
+        and hope.
+      </p>
+      <p>
+        I left to close that specific gap, not a general one. Not "digital marketing is broken"
+        — a lot of agencies do solid work. Specifically: the standard of account structure and
+        tracking rigor that Google applies internally to its biggest advertisers almost never
+        reaches a business spending ₹30,000 a month. There's no reason it can't. It just needs
+        someone willing to run small accounts with that same discipline instead of treating
+        them as too small to bother.
+      </p>
+
+      <h2>What agencies get wrong, most often</h2>
+      <p>
+        Not effort — most agencies I reviewed as an Account Strategist were trying. The
+        recurring mistake was structural: one campaign built to "cover" a business instead of
+        being split by what the business actually sells and how urgently people need it.
+        Conversion tracking set up once at launch and never checked again, so nobody notices
+        when it silently breaks — which it does, more often than you'd think. Monthly reports
+        built to look complete rather than to be useful, with screenshots instead of the
+        actual search terms that spent the budget.
+      </p>
+      <p>
+        None of that is dishonesty. It's usually an account manager handling twenty accounts
+        who genuinely doesn't have the hours to do it properly. The fix isn't a better sales
+        pitch — it's fewer accounts per person and more time spent on structure before a single
+        rupee goes toward bids.
+      </p>
+
+      <h2>Why "Structure"</h2>
+      <p>
+        Because it's the first thing I check, the thing most other problems trace back to, and
+        the one part of this work that's genuinely visible — you can look at an account tree
+        and see whether it makes sense, the same way you can look at a building's frame before
+        it's finished and tell whether it'll hold. Everything else — bids, budgets, creative —
+        is easier to get right once the structure underneath it is sound.
+      </p>
+      <p>
+        Nothing I managed before this existed can be shown here — it was all under NDA, inside
+        Google's systems, tied to advertisers who never knew my name. So instead of a case
+        study, there's a free audit: send over your account (or point us at your competitors,
+        if you're not running ads yet) and you'll get the same written findings I used to give
+        advertisers directly. That's the actual pitch. Everything else on this site explains
+        how the work gets done after that.
+      </p>
+
+      <a href="/contact/" class="btn btn-primary about-cta">Get the free account audit</a>
     </div>
   </section>
 
-  <section class="py-16 lg:py-20">
-    <div class="container-site max-w-4xl">
-      <div class="grid md:grid-cols-2 gap-12 items-start">
-        <div>
-          <h2 class="text-3xl font-bold text-blue-900 mb-6">Our story</h2>
-          <p class="text-slate-600 mb-4">
-            [PLACEHOLDER: Write your founder story here. Example: "After X years managing Google Ads for companies large and small, I kept noticing the same problem: small businesses were paying agency fees but getting junior account managers, templated campaigns, and monthly reports they couldn't understand. I founded Clearbid to offer SMBs the same rigour and transparency that enterprise clients expect — without the enterprise price tag."]
-          </p>
-          <p class="text-slate-600">
-            [PLACEHOLDER: 1–2 more sentences about your specific background, the Delhi NCR connection, and what 'Clearbid' means to you.]
-          </p>
-        </div>
+  <div class="rule"></div>
 
-        <div>
-          <h2 class="text-3xl font-bold text-blue-900 mb-6">Our approach</h2>
-          <ul class="space-y-4">
-            {[
-              { title: 'Transparency first', desc: 'You always own your account. We share everything — the good, the bad, and what we\'re doing about it.' },
-              { title: 'Data over guesswork', desc: 'Every decision is backed by data. We don\'t move budgets or change bids without a reason we can explain.' },
-              { title: 'Accountable to results', desc: 'Month-to-month contracts because we believe in earning your trust every month, not locking you in.' },
-              { title: 'SMB focus', desc: 'Small and mid-sized businesses are our primary clients. We\'re not a large agency with your account buried in a pod.' },
-            ].map(item => (
-              <li class="flex gap-4">
-                <div class="w-2 h-2 rounded-full bg-orange-500 mt-2 flex-shrink-0"></div>
-                <div>
-                  <p class="font-bold text-blue-900">{item.title}</p>
-                  <p class="text-sm text-slate-600">{item.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+  <section class="section about-creds tint">
+    <div class="container about-creds-grid">
+      <div>
+        <h3>Background</h3>
+        <ul class="about-list">
+          <li>3 years as a Google Ads Account Strategist at Google</li>
+          <li>Google Ads certified</li>
+          <li>Meta Blueprint certified</li>
+        </ul>
       </div>
-
-      <!-- Team section -->
-      <div class="mt-16">
-        <h2 class="text-3xl font-bold text-blue-900 mb-8">Team</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="bg-slate-50 rounded-xl p-6 text-center">
-            <div class="w-20 h-20 bg-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl" aria-hidden="true">
-              👤
-            </div>
-            <p class="font-bold text-blue-900">[PLACEHOLDER: Founder Name]</p>
-            <p class="text-sm text-slate-500">[PLACEHOLDER: Title — e.g. "Founder & Head of Google Ads"]</p>
-            <p class="text-xs text-slate-400 mt-2">[PLACEHOLDER: X years experience, key background]</p>
-          </div>
-          <!-- Add more team cards as your team grows -->
-        </div>
-      </div>
-
-      <!-- Certifications -->
-      <div class="mt-16">
-        <h2 class="text-2xl font-bold text-blue-900 mb-6">Certifications</h2>
-        <div class="flex flex-wrap gap-4">
-          <div class="bg-white border border-slate-200 rounded-lg px-6 py-4 text-sm font-semibold text-slate-700">
-            Google Ads Search Certified
-          </div>
-          <div class="bg-white border border-slate-200 rounded-lg px-6 py-4 text-sm font-semibold text-slate-700">
-            [PLACEHOLDER: Additional certifications]
-          </div>
-          <!-- [PLACEHOLDER: Add Google Partner badge here once genuinely earned — use official Google asset only] -->
-        </div>
+      <div>
+        <h3>What this doesn't include</h3>
+        <ul class="about-list about-list-muted">
+          <li>An official Google Partner badge — that's an agency-level award, not yet earned, and won't appear here until it genuinely is</li>
+          <li>Client logos or case studies from Google — all under NDA, none of it is mine to show</li>
+        </ul>
       </div>
     </div>
   </section>
-
-  <CTASection />
 </Layout>
+
+<style>
+  .about-hero { padding-bottom: 0.5rem; }
+  .about-hero h1 { margin-top: 0.6rem; max-width: 28ch; }
+
+  .about-essay-inner { max-width: 42rem; }
+  .about-essay-inner .lede { max-width: none; font-size: var(--fs-lg); margin-bottom: 2rem; }
+  .about-essay-inner h2 { margin-block: 2.25rem 0.85rem; font-size: var(--fs-h2); }
+  .about-essay-inner p { color: var(--muted); margin-bottom: 1.1rem; max-width: none; }
+  .about-cta { margin-top: 1.5rem; }
+
+  .about-creds-grid { display: grid; gap: 2rem; }
+  @media (min-width: 800px) {
+    .about-creds-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  }
+  .about-creds-grid h3 { font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 1rem; }
+  .about-list { display: flex; flex-direction: column; gap: 0.65rem; }
+  .about-list li { font-size: var(--fs-sm); padding-left: 1rem; border-left: 2px solid var(--ink); max-width: 46ch; }
+  .about-list-muted li { border-left-color: var(--rule); color: var(--muted); }
+</style>
