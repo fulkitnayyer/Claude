@@ -14,7 +14,7 @@ import checkpoint
 import export
 from config import CHAIN_KEYWORDS, CHROMIUM, DELAY, LOCALITIES, NON_DELHI, PUSH_EVERY, START_NUMBER, TARGET_NEW
 from dedupe import Deduper
-from enrich import enrich
+from enrich import confirms, enrich, find_site
 from practo import listing_page, profile
 from score import build_row
 from store import Store
@@ -49,6 +49,16 @@ def process(store, dd, ctx, page, url):
     nap()
     reason = out_of_scope(prof)
     site = enrich(ctx, prof.get("website")) if not reason else {}
+    if not reason and not site.get("phones"):
+        # Practo profiles don't link the clinic's site; search for it to get a WhatsApp-able mobile
+        area = prof.get("locality") or prof.get("area") or ""
+        found = find_site(page, prof["name"], area)
+        if found:
+            s2 = enrich(ctx, found)
+            if s2.get("ok") and confirms(s2.get("html"), prof["name"], area):
+                site = dict(s2, found_via_search=True)
+            nap()
+    site.pop("html", None)
     if not reason:
         reason = dd.match(prof["name"], " ".join([prof.get("phone", "")] + site.get("phones", [])),
                           site.get("url") or prof.get("website"), prof.get("locality", ""))

@@ -160,6 +160,14 @@ def profile(page, url):
                     info["reviews"] = int(rating.get("reviewCount") or rating.get("ratingCount") or 0)
                 except ValueError:
                     pass
+    # Practo's h1 is "<Clinic name>, <Locality>"; split it so Clinic and Area are clean
+    name = (info.get("name") or "").strip()
+    if "," in name:
+        head, tail = name.rsplit(",", 1)
+        if tail.strip() and len(tail.strip()) <= 40:
+            info["name"] = head.strip()
+            if not info.get("locality") or info["locality"].strip().lower() == "delhi":
+                info["locality"] = tail.strip()
     info["phone"] = phone
     info["url"] = url
     info["branches"] = 1 + (info.pop("other_locations") or 0)

@@ -14,7 +14,8 @@ def _is_mobile(p):
     """WhatsApp-able mobile. '080…' is an STD landline (Practo/IVR forwarding lines), not a mobile."""
     d = _digits(p)
     if len(d) == 11 and d[0] == "0":
-        return d[1] in "6789" and not d.startswith("080")
+        # 0-prefixed: only 09x/08x (not 080) are unambiguous mobiles; 07x/06x clash with STD codes (079, 0731…)
+        return d[1] in "89" and not d.startswith("080")
     return len(d) == 10 and d[0] in "6789"
 
 
@@ -63,9 +64,10 @@ def build_row(num, prof, site, hits):
     others = [_fmt(p) for p in site_phones if not _is_mobile(p)]
     if mobiles or others:
         phone = " / ".join((mobiles + others)[:2])
-        conf = "Verified: clinic's own website"
+        conf = "Verified: clinic's own website" + (" (found via web search)" if site.get("found_via_search") else "")
     elif practo_phone:
-        phone = _fmt(practo_phone)
+        d = _digits(practo_phone)
+        phone = _fmt("0" + d if len(d) == 10 and not _is_mobile(d) else practo_phone)
         conf = "Directory (Practo listing – call-forwarding line)"
     else:
         phone, conf = "Not found", "—"
