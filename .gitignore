@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# lead-gen data (repo is public – keep prospect data out until decided)
+leadgen/cache/
+leadgen/data/
+leadgen/reference/
+HealthGrow_*.xlsx
+__pycache__/
