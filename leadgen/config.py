@@ -16,10 +16,10 @@ LISTING_URL = PRACTO + "/delhi/clinics/dental-clinics/{locality}"
 
 TARGET_NEW = 300          # stop once this many accepted leads exist
 START_NUMBER = 74         # '#' column continues after the master file's 73 rows
-PUSH_EVERY = 25           # git commit+push after this many new accepted leads
+PUSH_EVERY = 25           # send the xlsx to the user after this many new accepted leads
 DELAY = (2.0, 4.0)        # polite random delay between Practo page loads (seconds)
 
-GIT_BRANCH = "claude/funny-archimedes-7v0wu6"
+
 
 # Seed localities (Practo URL slugs). The collector also adds any locality
 # links it discovers on listing pages, so this does not need to be complete.
