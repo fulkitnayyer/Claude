@@ -110,7 +110,13 @@ PROFILE_JS = r"""
 }
 """
 
-PHONE_RE = re.compile(r"(?:\+91[\s-]?|0)?[6-9]\d{4}[\s-]?\d{5}|0\d{2,4}[\s-]?\d{6,8}")
+PHONE_RE = re.compile(r"(?<![\d.])(?:(?:\+91[\s-]?|0)?[6-9]\d{4}[\s-]?\d{5}|0\d{2,4}[\s-]?\d{6,8})(?!\d)")
+
+
+def visible_text(html):
+    """Page text without <script>/<style> bodies, so CSS values like .6666666667s never parse as phones."""
+    html = re.sub(r"<(script|style|noscript)\b[^>]*>.*?</\1>", " ", html, flags=re.S | re.I)
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
 
 
 def profile(page, url):
@@ -132,7 +138,9 @@ def profile(page, url):
     if info.get("prime") and "prime" in (info.get("name") or "").lower():
         info["prime"] = False   # "Prime" is part of the clinic's name, not the badge
     tel = re.findall(r'href=["\']tel:([^"\']+)', html)
-    m = tel or PHONE_RE.findall(re.sub(r"<[^>]+>", " ", html))
+    text = visible_text(html)
+    labelled = re.findall(r"Phone number\s*([+\d][\d\s-]{8,16}\d)", text)
+    m = tel or labelled or PHONE_RE.findall(text)
     phone = m[0].strip() if m else ""
 
     for item in _jsonld(html):

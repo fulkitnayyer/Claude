@@ -5,14 +5,27 @@ CORE = ["implant", "aligner", "invisalign", "root canal", "rct", "crown", "venee
         "smile design", "whitening", "orthodont", "braces", "full mouth"]
 
 
+def _digits(p):
+    d = re.sub(r"\D", "", p or "")
+    return d[2:] if len(d) == 12 and d.startswith("91") else d
+
+
 def _is_mobile(p):
-    d = re.sub(r"\D", "", p or "")[-10:]
+    """WhatsApp-able mobile. '080…' is an STD landline (Practo/IVR forwarding lines), not a mobile."""
+    d = _digits(p)
+    if len(d) == 11 and d[0] == "0":
+        return d[1] in "6789" and not d.startswith("080")
     return len(d) == 10 and d[0] in "6789"
 
 
 def _fmt(p):
-    d = re.sub(r"\D", "", p)[-10:]
-    return f"+91 {d[:5]} {d[5:]}" if _is_mobile(d) else p.strip()
+    d = _digits(p)
+    if _is_mobile(d):
+        return f"+91 {d[-10:-5]} {d[-5:]}"
+    if len(d) == 11 and d[0] == "0":
+        std = 3 if d[1:3] in ("11", "22", "33", "44", "80", "40", "20", "79") else 4
+        return f"{d[:std]}-{d[std:]}"
+    return (p or "").strip()
 
 
 def build_row(num, prof, site, hits):
@@ -41,27 +54,30 @@ def build_row(num, prof, site, hits):
         evidence.append("Prime badge on Practo profile")
     evidence = "; ".join(evidence) or "No Sponsored slot or Prime badge seen during collection"
 
-    # --- phone / reachability --------------------------------------------------
+    # --- phone / reachability: prefer a WhatsApp-able mobile ------------------------
+    wa_num = site.get("whatsapp") or ""
     site_phones = [p for p in (site.get("phones") or []) if p]
     site_mobiles = [p for p in site_phones if _is_mobile(p)]
     practo_phone = prof.get("phone") or ""
-    if site_mobiles or site_phones:
-        phone = " / ".join(_fmt(p) for p in (site_mobiles or site_phones)[:2])
+    mobiles = list(dict.fromkeys(_fmt(p) for p in ([wa_num] if wa_num else []) + site_mobiles))
+    others = [_fmt(p) for p in site_phones if not _is_mobile(p)]
+    if mobiles or others:
+        phone = " / ".join((mobiles + others)[:2])
         conf = "Verified: clinic's own website"
     elif practo_phone:
         phone = _fmt(practo_phone)
-        conf = "Directory (Practo listing – likely call-forwarding)"
+        conf = "Directory (Practo listing – call-forwarding line)"
     else:
         phone, conf = "Not found", "—"
 
-    if site.get("whatsapp"):
-        wa = f"Yes – confirmed ({site['whatsapp']} link on site)"
+    if wa_num:
+        wa = f"Yes – confirmed (WhatsApp link on site: {_fmt(wa_num)})"
     elif site_mobiles:
-        wa = "Yes (assumed – mobile)"
-    elif practo_phone:
-        wa = "Uncertain – Practo number may be a call-forwarding line; confirm direct mobile"
+        wa = f"Likely – mobile on clinic's site ({_fmt(site_mobiles[0])}); not confirmed on WhatsApp"
     else:
-        wa = "Not found"
+        wa = "NO – FLAG: no WhatsApp-able mobile found (" + (
+            "only Practo call-forwarding line" if practo_phone and not site_phones
+            else "landline only" if site_phones else "no number") + ")"
     email = (site.get("emails") or ["Not found"])[0]
 
     # --- scores -----------------------------------------------------------------
@@ -78,8 +94,8 @@ def build_row(num, prof, site, hits):
     signal += 1 if n_docs >= 3 and not (sponsored and prime) else 0
 
     reach = 2
-    reach += 2 if conf.startswith("Verified") and site_mobiles else 1 if conf.startswith("Verified") else 0
-    reach += 1 if site.get("whatsapp") else 0
+    reach += 2 if mobiles else 1 if conf.startswith("Verified") else 0
+    reach += 1 if wa_num else 0
     reach += 1 if email != "Not found" else 0
     reach -= 1 if phone == "Not found" else 0
     clamp = lambda x: max(1, min(5, x))
@@ -99,8 +115,8 @@ def build_row(num, prof, site, hits):
     if sponsored or prime:
         why.append("already paying for Practo visibility – warm 'is your spend working?' opener")
     check = []
-    if not conf.startswith("Verified"):
-        check.append("Confirm a direct mobile – only the Practo number was found.")
+    if not mobiles:
+        check.append("No WhatsApp-able mobile – call the listed number and ask for the clinic's WhatsApp.")
     if not site.get("url"):
         check.append("No own website found.")
     elif not site.get("ok"):

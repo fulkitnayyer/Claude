@@ -16,10 +16,17 @@ def norm_name(name):
     return " ".join(w for w in words if w not in STOP)
 
 
+PHONE_RE = re.compile(
+    r"(?<![\d.])(?:(?:\+?91[\s-]?|0)?[6-9]\d{4}[\s-]?\d{5}"          # mobile
+    r"|(?:\+?91[\s-]?|0)\d{2,4}[\s-]?\d{3,4}[\s-]?\d{4})(?!\d)"      # landline / 080 forwarding
+)
+
+
 def phones(text):
-    """Last-10-digit keys for every Indian phone-looking number in text."""
+    """Last-10-digit keys for every Indian phone-looking number in text.
+    Numbers are matched one at a time, so space-joined numbers never merge into one key."""
     out = set()
-    for m in re.findall(r"(?:\+?91[\s-]?)?(?:0)?[\d][\d\s-]{8,13}\d", text or ""):
+    for m in PHONE_RE.findall(text or ""):
         d = re.sub(r"\D", "", m)
         if len(d) >= 10:
             out.add(d[-10:])
