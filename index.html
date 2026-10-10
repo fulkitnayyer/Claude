@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cost Per Clue — Every click costs you. The clues are free.</title>
+<meta name="description" content="Independent help for small-business owners already running Google Ads. Take The 4-Minute Clue Check and find out where the money is leaking.">
+<meta name="theme-color" content="#f3ead6">
+<style>
+:root{
+  --paper:#f3ead6;
+  --paper-2:#eadfc4;
+  --ink:#16140f;
+  --ink-soft:#4a4437;
+  --hi:#ffd83d;
+  --string:#c8341e;
+  --line:#16140f;
+  --card:#fbf6e8;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#17140e;--paper-2:#221d13;--ink:#f3ead6;--ink-soft:#c9bfa6;--card:#1f1a11;--line:#f3ead6;--string:#ff6a50}
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:1.0625rem/1.6 var(--serif);
+  background-image:linear-gradient(var(--paper-2) 1px,transparent 1px);background-size:100% 2rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--string);outline-offset:3px}
+.wrap{width:100%;max-width:68rem;margin:0 auto;padding:0 1rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:.5rem 1rem;z-index:9}
+.skip:focus{left:0}
+.tag{font:700 .75rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+h1,h2,h3{font-family:var(--serif);line-height:1.1;margin:0}
+mark{background:linear-gradient(transparent 55%,var(--hi) 55%);color:inherit;padding:0 .1em}
+@media (prefers-color-scheme:dark){mark{color:#16140f;background:var(--hi);padding:0 .15em}}
+
+/* nav */
+.nav{border-bottom:3px double var(--line);background:var(--paper)}
+.nav .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem 1.5rem;padding-top:.75rem;padding-bottom:.75rem}
+.logo{font:700 1.2rem/1 var(--serif);text-decoration:none;display:flex;align-items:center;gap:.5rem}
+.logo svg{width:1.6rem;height:1.6rem;flex:none}
+.logo b{background:var(--hi);color:#16140f;padding:0 .25em;border-radius:2px}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;font:600 .9rem var(--sans)}
+.nav li a{display:inline-block;padding:.5rem 0;text-decoration-thickness:2px;text-underline-offset:4px}
+.nav li a.cta{background:var(--ink);color:var(--paper);padding:.5rem .9rem;text-decoration:none;border-radius:2px}
+
+/* hero */
+.hero{padding:2.5rem 0 3rem;position:relative;overflow:hidden}
+.hero .tag{color:var(--string);display:block;margin-bottom:1rem}
+.hero h1{font-size:clamp(2.1rem,8.5vw,4.4rem);letter-spacing:-.02em;max-width:16em}
+.hero p.sub{font-size:1.2rem;max-width:34rem;margin:1.25rem 0 1.75rem;color:var(--ink-soft)}
+.btn{display:inline-block;font:700 1.05rem var(--sans);background:var(--string);color:#fff;text-decoration:none;padding:1rem 1.4rem;border:3px solid var(--line);box-shadow:5px 5px 0 var(--line);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--line)}
+.hero .meta{display:block;margin-top:1.1rem;font:.85rem var(--mono);color:var(--ink-soft)}
+.receipt{margin:2.25rem 0 0;max-width:20rem;background:var(--card);border:2px dashed var(--line);padding:1rem 1.1rem;font:.9rem/1.7 var(--mono);transform:rotate(-1.2deg)}
+.receipt div{display:flex;justify-content:space-between;gap:1rem}
+.receipt .q{color:var(--string);font-weight:700}
+.receipt small{display:block;margin-top:.5rem;color:var(--ink-soft);font-size:.72rem;line-height:1.4}
+.lens{display:none}
+@media(min-width:56rem){
+  .hero{padding:4rem 0 5rem}
+  .hero .wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;align-items:center}
+  .lens{display:block;width:100%;max-width:22rem;justify-self:center}
+}
+
+/* sections */
+section{padding:3rem 0}
+.sec-head{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.75rem}
+.sec-head .tag{color:var(--string)}
+.sec-head h2{font-size:clamp(1.7rem,5vw,2.6rem)}
+.sec-head p{margin:0;max-width:38rem;color:var(--ink-soft)}
+
+/* cluster grid */
+.grid{display:grid;gap:1.1rem;grid-template-columns:1fr;list-style:none;margin:0;padding:0}
+@media(min-width:44rem){.grid{grid-template-columns:repeat(3,1fr)}}
+.case{display:flex;flex-direction:column;height:100%;background:var(--card);border:2px solid var(--line);padding:1.25rem 1.25rem 1.1rem;text-decoration:none;position:relative;transition:transform .12s}
+.case:hover{transform:translateY(-3px)}
+.case::before{content:"";position:absolute;top:-2px;left:1.25rem;width:3.5rem;height:.9rem;background:var(--hi);border:2px solid var(--line);border-top:0}
+.case .no{font:700 .75rem var(--mono);letter-spacing:.1em;margin-top:.5rem;color:var(--string)}
+.case h3{font-size:1.35rem;margin:.4rem 0 .5rem}
+.case p{margin:0 0 1rem;color:var(--ink-soft);font-size:.98rem}
+.case .go{margin-top:auto;font:700 .9rem var(--mono)}
+.case .go span{display:inline-block;transition:transform .12s}
+.case:hover .go span{transform:translateX(4px)}
+.ph{display:inline-block;font:700 .68rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:.3rem .45rem;margin-bottom:.4rem;align-self:flex-start}
+
+/* trust */
+.trust{background:var(--ink);color:var(--paper);border-block:3px double var(--paper)}
+@media (prefers-color-scheme:dark){.trust{background:#0c0a06}}
+.trust .sec-head .tag{color:var(--hi)}
+.trust .sec-head p{color:#cfc5ac}
+.trust-grid{display:grid;gap:1.5rem;grid-template-columns:1fr;margin:0;padding:0;list-style:none}
+@media(min-width:56rem){.trust-grid{grid-template-columns:repeat(3,1fr);gap:2rem}}
+.trust-grid li{border-top:3px solid var(--hi);padding-top:1rem}
+.trust-grid .tag{color:var(--hi);display:block;margin-bottom:.6rem}
+.trust-grid p{margin:0 0 .6rem}
+.trust-grid .big{font-size:1.2rem;line-height:1.4}
+.trust-grid .small{font-size:.9rem;color:#cfc5ac}
+.slot{display:block;font:.9rem var(--mono);border:1.5px dashed var(--hi);padding:.5rem .65rem;margin:.4rem 0;color:var(--hi)}
+
+/* how it works */
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+@media(min-width:44rem){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps li{counter-increment:s;background:var(--card);border:2px solid var(--line);padding:1.1rem 1.2rem}
+.steps li::before{content:"Clue " counter(s);font:700 .75rem var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--hi);color:#16140f;padding:.25rem .5rem;display:inline-block;margin-bottom:.6rem}
+.steps h3{font-size:1.2rem;margin-bottom:.3rem}
+.steps p{margin:0;color:var(--ink-soft);font-size:.98rem}
+.how-cta{margin-top:1.75rem;display:flex;flex-wrap:wrap;gap:1rem 1.5rem;align-items:center}
+.how-cta small{font:.85rem var(--mono);color:var(--ink-soft)}
+
+/* newsletter */
+.news{background:var(--paper-2);border-top:3px double var(--line)}
+.news .box{max-width:38rem}
+form{display:grid;gap:1rem;margin-top:1.25rem}
+label.f{display:grid;gap:.35rem;font:600 .9rem var(--sans)}
+input[type=email]{font:1rem var(--sans);padding:.85rem .9rem;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:0;width:100%}
+.consent{display:flex;gap:.7rem;align-items:flex-start;font:.9rem/1.5 var(--sans);color:var(--ink-soft)}
+.consent input{width:1.35rem;height:1.35rem;flex:none;margin-top:.1rem;accent-color:var(--string)}
+button{font:700 1rem var(--sans);justify-self:start;background:var(--ink);color:var(--paper);border:3px solid var(--line);padding:.9rem 1.3rem;cursor:pointer;border-radius:0}
+button:hover{background:var(--string);color:#fff}
+.fine{font:.82rem/1.5 var(--sans);color:var(--ink-soft);margin:0}
+
+/* footer */
+footer{background:var(--ink);color:var(--paper);padding:2.5rem 0 3rem}
+@media (prefers-color-scheme:dark){footer{background:#0c0a06}}
+footer .wrap{display:grid;gap:1.5rem}
+footer p{margin:0}
+.indep{font-size:.95rem;border-left:4px solid var(--hi);padding-left:.9rem;max-width:42rem}
+footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.25rem 1.5rem;font:600 .9rem var(--sans)}
+footer li a{display:inline-block;padding:.5rem 0}
+footer .pen{font:.85rem/1.5 var(--mono);color:#cfc5ac;max-width:42rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- 1. NAV -->
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Cost Per Clue, home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="9" fill="none" stroke="currentColor" stroke-width="3"/><path d="M20 20l9 9" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+      Cost Per <b>Clue</b>
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#problems">Problems (by cluster)</a></li>
+        <li><a href="/clue-check/" class="cta">Free health check</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- 2. HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag">Case file No. 001 · Google Ads for small businesses</span>
+      <h1>I’m paying for the clicks. <mark>Where are the customers?</mark></h1>
+      <p class="sub">Every click costs you. The clues are free. Find out where your Google Ads budget is leaking.</p>
+      <a class="btn" href="/clue-check/">Start The 4-Minute Clue Check →</a>
+      <span class="meta">Free · No account needed to see your score</span>
+      <div class="receipt" role="img" aria-label="Illustrative example only: 50 clicks at 4 dollars each is 200 dollars spent, with customers unknown.">
+        <div><span>50 clicks × $4.00</span><span>$200.00</span></div>
+        <div><span>Phone calls booked</span><span class="q">???</span></div>
+        <small>Illustration only, not real data. The point: the clicks are on the bill. The clues are what’s missing.</small>
+      </div>
+    </div>
+    <svg class="lens" viewBox="0 0 240 240" aria-hidden="true">
+      <circle cx="100" cy="100" r="74" fill="var(--card)" stroke="var(--line)" stroke-width="8"/>
+      <path d="M154 154l62 62" stroke="var(--line)" stroke-width="22" stroke-linecap="round"/>
+      <path d="M60 70q40-26 80 0M54 110h92M64 140q36 20 72 0" fill="none" stroke="var(--string)" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 12"/>
+      <text x="100" y="116" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="46" fill="var(--ink)">$?</text>
+    </svg>
+  </div>
+</div>
+
+<!-- 3. WHAT'S GOING WRONG -->
+<section id="problems" aria-labelledby="problems-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Open cases</span>
+      <h2 id="problems-h">What’s going wrong?</h2>
+      <p>Pick the one that sounds like your week. Each hub collects the symptoms, the likely causes and the fixes. Cluster names below are placeholders.</p>
+    </div>
+    <ul class="grid">
+      <li><a class="case" href="/fix/lead-quality/">
+        <span class="ph">Placeholder cluster name</span>
+        <span class="no">CASE A</span>
+        <h3>[Cluster A name]</h3>
+        <p>Example owner’s words: “The leads keep coming, but they’re the wrong people.”</p>
+        <span class="go">/fix/lead-quality/ <span>→</span></span>
+      </a></li>
+      <li><a class="case" href="/fix/wasted-spend/">
+        <span class="ph">Placeholder cluster name</span>
+        <span class="no">CASE B</span>
+        <h3>[Cluster B name]</h3>
+        <p>Example owner’s words: “The budget is gone by lunchtime and I can’t say where it went.”</p>
+        <span class="go">/fix/wasted-spend/ <span>→</span></span>
+      </a></li>
+      <li><a class="case" href="/fix/tracking/">
+        <span class="ph">Placeholder cluster name</span>
+        <span class="no">CASE C</span>
+        <h3>[Cluster C name]</h3>
+        <p>Example owner’s words: “I honestly don’t know which clicks turn into customers.”</p>
+        <span class="go">/fix/tracking/ <span>→</span></span>
+      </a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. TRUST STRIP -->
+<section class="trust" aria-labelledby="trust-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Why listen</span>
+      <h2 id="trust-h">Evidence, not hype</h2>
+    </div>
+    <ul class="trust-grid">
+      <li>
+        <span class="tag">Hands-on</span>
+        <p class="big">Every quarter I work hands-on with the Google Ads of roughly 150–200 new small businesses.</p>
+        <p class="small">Written by [Pen name]. That’s a pen name; the advice is real, the byline is private.</p>
+      </li>
+      <li>
+        <span class="tag">Certifications</span>
+        <span class="slot">[Exact certification name, valid through MM/YYYY]</span>
+        <span class="slot">[Exact certification name, valid through MM/YYYY]</span>
+        <p class="small">Placeholders: to be replaced with exact names and expiry dates before launch.</p>
+        <p class="small">Cost Per Clue is independent and is not affiliated with, endorsed or sponsored by Google. Google Ads is a trademark of Google LLC.</p>
+      </li>
+      <li>
+        <span class="tag">Independent</span>
+        <p class="big">No ad platform pays us, endorses us or tells us what to write.</p>
+        <p class="small">Cost Per Clue is independent and is not affiliated with, endorsed or sponsored by Google. Google Ads is a trademark of Google LLC.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5. HOW THE CHECK WORKS -->
+<section id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">The method</span>
+      <h2 id="how-h">How the check works</h2>
+      <p>15–20 plain questions about your account. No jargon, and you don’t need to log in to Google Ads to answer most of them.</p>
+    </div>
+    <ol class="steps">
+      <li><h3>Answer 15–20 questions</h3><p>Yes, no or not sure. About four minutes at a normal pace.</p></li>
+      <li><h3>See your score on screen</h3><p>Instantly, with no email required to view it.</p></li>
+      <li><h3>Get the full fix list by email</h3><p>Every item, in plain English, ordered so you can start at the top.</p></li>
+    </ol>
+    <div class="how-cta">
+      <a class="btn" href="/clue-check/">Start The 4-Minute Clue Check →</a>
+      <small>Free · Google Ads only</small>
+    </div>
+  </div>
+</section>
+
+<!-- 6. NEWSLETTER -->
+<section class="news" id="newsletter" aria-labelledby="news-h">
+  <div class="wrap">
+    <div class="box">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="tag">Not ready for the check?</span>
+        <h2 id="news-h">Get one clue at a time</h2>
+        <p>Short, plain-English Google Ads tips for small-business owners. Skip the check for now and just read along.</p>
+      </div>
+      <form action="#" method="post">
+        <label class="f">Email address
+          <input type="email" name="email" autocomplete="email" inputmode="email" required placeholder="you@yourbusiness.com">
+        </label>
+        <label class="consent">
+          <input type="checkbox" name="consent" value="yes" required>
+          <span>Yes, email me the Cost Per Clue newsletter. I can unsubscribe with one click at any time. [Consent wording to be confirmed by counsel.]</span>
+        </label>
+        <button type="submit">Send me the newsletter</button>
+        <p class="fine">We use your email only for this newsletter. See the <a href="/privacy/">privacy policy</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 7. FOOTER -->
+<footer>
+  <div class="wrap">
+    <p class="indep">Cost Per Clue is independent and is not affiliated with, endorsed or sponsored by Google. Google Ads is a trademark of Google LLC.</p>
+    <p class="pen">Cost Per Clue is written under a pen name, [Pen name]. It is a pen name, not a real name.</p>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </nav>
+    <p class="pen">© [Year] Cost Per Clue · [Legal entity name]</p>
+  </div>
+</footer>
+</body>
+</html>
