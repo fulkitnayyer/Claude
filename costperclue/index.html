@@ -38,6 +38,7 @@ p{margin:0 0 1rem}
 h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.08;letter-spacing:-.015em;margin:0;text-wrap:balance}
 ul,ol{margin:0;padding:0;list-style:none}
 svg{display:block}
+.nowrap{white-space:nowrap}
 .wrap{width:100%;max-width:70rem;margin-inline:auto;padding-inline:var(--gut)}
 .label{font:600 .72rem/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--stamp);margin:0 0 .9rem}
 .fine{font-size:.8125rem;line-height:1.5;color:var(--ink-2)}
@@ -143,8 +144,7 @@ h1{font-size:clamp(2.2rem,8.6vw,4.25rem);margin-bottom:1.25rem}
 .trust-head{max-width:42rem;margin-bottom:2.25rem}
 .trust-head .label{color:var(--marker)}
 .trust-head h2{font-size:clamp(1.6rem,4.6vw,2.25rem);margin-bottom:.75rem}
-.trust-head .ph{border-color:var(--marker);color:var(--marker);background:none;white-space:nowrap}
-.trust-head a{color:var(--marker);font-weight:600}
+.trust-head>p:last-child{margin:0;font-size:1.0625rem}
 .tags{display:grid;gap:1.25rem}
 .etag{position:relative;background:var(--paper-2);color:var(--ink);padding:2.6rem 1.25rem 1.4rem;clip-path:polygon(1.25rem 0,calc(100% - 1.25rem) 0,100% 1.25rem,100% 100%,0 100%,0 1.25rem)}
 .etag::before{content:"";position:absolute;top:.95rem;left:50%;width:.8rem;height:.8rem;margin-left:-.4rem;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px var(--manila)}
@@ -338,14 +338,14 @@ h1{font-size:clamp(2.2rem,8.6vw,4.25rem);margin-bottom:1.25rem}
     <div class="wrap">
       <div class="trust-head">
         <p class="label">Who’s reading the clues</p>
-        <h2 id="trust-h">Written by <span class="ph">[Pen name]</span>, a pen name.</h2>
-        <p><a href="/about/#pen-name">Why a pen name?</a></p>
+        <h2 id="trust-h">The Ads Mechanic.</h2>
+        <p>I pop the hood on small-business Google Ads and tell you what’s broken, in plain English.</p>
       </div>
       <ul class="tags">
         <li class="etag">
           <p class="label">Field notes</p>
-          <p class="etag-quote">“Every quarter I work hands-on with the Google Ads of roughly 150–200 new small businesses.”</p>
-          <p class="etag-by">— <span class="ph">[Pen name]</span></p>
+          <p class="etag-quote">“Every quarter I work hands-on with the Google Ads of roughly <span class="nowrap">150–200</span> new small businesses.”</p>
+          <p class="etag-by">— The Ads Mechanic</p>
         </li>
         <li class="etag">
           <p class="label">Certifications</p>
@@ -443,7 +443,7 @@ h1{font-size:clamp(2.2rem,8.6vw,4.25rem);margin-bottom:1.25rem}
         <li><a href="/contact/">Contact</a></li>
       </ul>
     </nav>
-    <p class="fine">Written by <span class="ph">[Pen name]</span>, a pen name. © 2026 Cost Per Clue.</p>
+    <p class="fine">Written by the Ads Mechanic. © 2026 Cost Per Clue.</p>
   </div>
 </footer>
 
